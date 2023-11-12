@@ -45,10 +45,11 @@ A playground for testing new Cypress features and updates!
     ~~~
 
 ## Package Scripts
-* `npm run cypress:open` to run all Cypress tests, headed
-* `npm run cypress: run` to run all Cypress tests, headless
-* `npm run lint` to lint your code
-* `npm run lint:fix` to lint and fix your code
+* `$ npm run cypress:open` to run all Cypress tests, headed
+* `$ npm run cypress:run` to run all Cypress tests, headless
+* `$ npm run cypress:tagged --tags=TAGS` to run Cypress tests, headless, where `TAGS` can be replaced with tags such as `@loginPage`, `@loginSanity`, `@loginPositive`, and `@loginNegative`
+* `$ npm run lint` to lint your code
+* `$ npm run lint:fix` to lint and fix your code
 
 ## Support Documentation
 * [Cypress](https://www.cypress.io/) for documentation on test creation and debugging

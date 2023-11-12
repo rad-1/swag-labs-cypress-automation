@@ -22,10 +22,7 @@ describe('Login page', { tags: '@loginPage' }, () => {
     context('When a user attempts to login', () => {
         context('Successful login', { tags: '@loginPositive' }, () => {
             it('Valid username and password', () => {
-                cy.login(
-                    credentials.username.standard,
-                    credentials.password.valid,
-                );
+                cy.login(credentials.username.standard, credentials.password.valid);
                 cy.get('.title').should('have.text', 'Products');
             });
         });

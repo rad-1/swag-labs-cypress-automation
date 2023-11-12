@@ -32,11 +32,6 @@ describe('Login page', { tags: '@loginPage' }, () => {
         });
 
         context('Unsuccessful login', { tags: '@loginNegative' }, () => {
-            it('Invalid username and password', () => {
-                cy.login(credentials.username.invalid, credentials.password.invalid);
-                cy.get('[data-test="error"]').should('have.text', loginError.invalidCreds);
-            });
-
             it('Invalid username', () => {
                 cy.login(credentials.username.invalid, credentials.password.valid);
                 cy.get('[data-test="error"]').should('have.text', loginError.invalidCreds);
@@ -44,6 +39,11 @@ describe('Login page', { tags: '@loginPage' }, () => {
 
             it('Invalid password', () => {
                 cy.login(credentials.username.valid, credentials.password.invalid);
+                cy.get('[data-test="error"]').should('have.text', loginError.invalidCreds);
+            });
+
+            it('Invalid username and password', () => {
+                cy.login(credentials.username.invalid, credentials.password.invalid);
                 cy.get('[data-test="error"]').should('have.text', loginError.invalidCreds);
             });
 

@@ -1,0 +1,26 @@
+{
+    "extends": [
+        "plugin:cypress/recommended"
+    ],
+    "plugins": [
+        "cypress"
+    ],
+    "env": {
+        "cypress/globals": true
+    },
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-trailing-spaces": "error"
+    }
+}

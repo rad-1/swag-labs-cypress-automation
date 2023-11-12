@@ -1,8 +1,13 @@
 {
   "devDependencies": {
-    "cypress": "^13.5.0"
+    "cypress": "^13.5.0",
+    "eslint": "^8.53.0",
+    "eslint-plugin-cypress": "^2.15.1"
   },
   "scripts": {
-      "test": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   }
 }

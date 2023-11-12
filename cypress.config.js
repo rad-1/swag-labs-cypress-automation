@@ -8,7 +8,7 @@ module.exports = defineConfig({
             require('@cypress/grep/src/plugin')(config);
             return config;
         },
-        baseUrl: 'https://www.saucedemo.com'
+        baseUrl: 'https://www.saucedemo.com/'
     },
     reporter: 'spec',
     screenshotOnRunFailure: true,

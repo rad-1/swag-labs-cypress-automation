@@ -1,5 +1,5 @@
 # Cypress Framework
-A playground for testing new Cypress features and updates!
+A playground for testing Cypress features and updates!
 
 ## Table of Contents
 - [Requirements](#requirements)

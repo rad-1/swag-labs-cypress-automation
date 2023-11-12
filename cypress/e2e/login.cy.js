@@ -21,7 +21,7 @@ describe('Login page', { tags: '@loginPage' }, () => {
         });
     });
 
-    context('When a user attempts to login', () => {
+    context('When a user attempts to log in', () => {
         context('Successful login', { tags: '@loginPositive' }, () => {
             it('Valid username and password', () => {
                 cy.login(credentials.username.valid, credentials.password.valid);

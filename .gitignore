@@ -1,1 +1,6 @@
+# Packages
 node_modules
+
+# Cypress
+videos
+screenshots

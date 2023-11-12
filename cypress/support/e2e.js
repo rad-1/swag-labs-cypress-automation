@@ -1,3 +1,3 @@
-// e2e.js
+// Command imports
 
 import './commands/login.js';

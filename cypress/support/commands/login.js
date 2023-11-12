@@ -1,4 +1,4 @@
-// commands/login.js
+// Login page commands
 
 Cypress.Commands.add('login', (username, password) => {
     const userField = '[data-test="username"]';

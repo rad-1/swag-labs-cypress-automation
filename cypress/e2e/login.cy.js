@@ -1,4 +1,4 @@
-// login.cy.js
+// Login page tests
 
 import credentials from '../fixtures/credentials.json';
 
@@ -8,7 +8,7 @@ const loginError = {
     passwordRequired: 'Epic sadface: Password is required',
 };
 
-describe('Login page', () => {
+describe('login page tests', () => {
     beforeEach(() => {
         cy.visit('/');
     });

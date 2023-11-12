@@ -24,7 +24,7 @@ describe('Login page', { tags: '@loginPage' }, () => {
     context('When a user attempts to login', () => {
         context('Successful login', { tags: '@loginPositive' }, () => {
             it('Valid username and password', () => {
-                cy.login(credentials.username.standard, credentials.password.valid);
+                cy.login(credentials.username.valid, credentials.password.valid);
                 cy.get('.title')
                     .should('be.visible')
                     .and('have.text', 'Products');
@@ -43,7 +43,7 @@ describe('Login page', { tags: '@loginPage' }, () => {
             });
 
             it('Invalid password', () => {
-                cy.login(credentials.username.standard, credentials.password.invalid);
+                cy.login(credentials.username.valid, credentials.password.invalid);
                 cy.get('[data-test="error"]').should('have.text', loginError.invalidCreds);
             });
 
@@ -53,7 +53,7 @@ describe('Login page', { tags: '@loginPage' }, () => {
             });
 
             it('Empty string password', () => {
-                cy.login(credentials.username.standard, '');
+                cy.login(credentials.username.valid, '');
                 cy.get('[data-test="error"]').should('have.text', loginError.passwordRequired);
             });
 

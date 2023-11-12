@@ -8,19 +8,19 @@ const loginError = {
     passwordRequired: 'Epic sadface: Password is required',
 };
 
-describe('login page', () => {
+describe('login page', { tags: '@loginPage' }, () => {
     beforeEach(() => {
         cy.visit('/');
     });
 
-    context('when user views page', () => {
+    context('when user views page', { tags: '@loginSanity' }, () => {
         it('page title is visible', () => {
             cy.get('.login_logo').should('have.text', 'Swag Labs');
         });
     });
 
     context('when user attempts to log in', () => {
-        context('successful login', () => {
+        context('successful login', { tags: '@loginPositive' }, () => {
             it('valid credentials', () => {
                 cy.login(
                     credentials.username.standard,
@@ -30,7 +30,7 @@ describe('login page', () => {
             });
         });
 
-        context('unsuccessful login', () => {
+        context('unsuccessful login', { tags: '@loginNegative' }, () => {
             it('invalid username and password', () => {
                 cy.login(credentials.username.invalid, credentials.password.invalid);
                 cy.get('[data-test="error"]').should('have.text', loginError.invalidCreds);

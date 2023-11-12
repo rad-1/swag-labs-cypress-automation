@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@cypress/grep": "^4.0.1",
     "cypress": "^13.5.0",
     "eslint": "^8.53.0",
     "eslint-plugin-cypress": "^2.15.1"
@@ -7,6 +8,7 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
+    "cypress:tagged": "cypress run --env grepTags=$npm_config_tags",
     "lint": "eslint . --ext .js,.jsx",
     "lint:fix": "eslint . --fix --ext .js,.jsx"
   }

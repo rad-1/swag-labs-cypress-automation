@@ -5,8 +5,8 @@ A playground for testing new Cypress features and updates!
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
 - [Package Scripts](#package-scripts)
-- [Contact Information](#contact-information)
 - [Support Documentation](#support-documentation)
+- [Contact Information](#contact-information)
 
 ## Requirements
 * macOS 10.9 and above (Intel or Apple Silicon 64-bit (x64 or arm64))
@@ -51,8 +51,8 @@ A playground for testing new Cypress features and updates!
 * `npm run lint:fix` to lint and fix your code
 
 ## Support Documentation
-* [Cypress](https://www.cypress.io/) for information around test creation and test debugging
-* [ESLint](https://eslint.org/) for additional information around basic code linting
+* [Cypress](https://www.cypress.io/) for documentation on test creation and debugging
+* [ESLint](https://eslint.org/) for information around basic code linting
 
 ## Contact Information
 Feel free to send a message to my inbox or connect with me on [LinkedIn](https://www.linkedin.com/in/joshuatipton/). I'm always looking for new opportunities. Let's chat!

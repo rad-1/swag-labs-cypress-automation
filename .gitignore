@@ -1,6 +1,6 @@
-# Packages
+# Ignore packages
 node_modules
 
-# Cypress
+# Ignore Cypress files and folders
 videos
 screenshots

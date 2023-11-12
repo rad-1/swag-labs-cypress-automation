@@ -1,8 +1,9 @@
-// Support file
+// cypress/support/e2e.js
 
-// Command imports
-import './commands/login.js';
+// command imports
+import './commands/base.commands.js';
+import './commands/login.commands.js';
 
-// Plug-in initializations
+// plug-in initialization
 const registerCypressGrep = require('@cypress/grep');
 registerCypressGrep();

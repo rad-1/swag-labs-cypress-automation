@@ -15,7 +15,9 @@ describe('Login page', { tags: '@loginPage' }, () => {
 
     context('When a user views the page', { tags: '@loginSanity' }, () => {
         it('Title is visible', () => {
-            cy.get('.login_logo').should('have.text', 'Swag Labs');
+            cy.get('.login_logo')
+                .should('be.visible')
+                .and('have.text', 'Swag Labs');
         });
     });
 
@@ -23,7 +25,9 @@ describe('Login page', { tags: '@loginPage' }, () => {
         context('Successful login', { tags: '@loginPositive' }, () => {
             it('Valid username and password', () => {
                 cy.login(credentials.username.standard, credentials.password.valid);
-                cy.get('.title').should('have.text', 'Products');
+                cy.get('.title')
+                    .should('be.visible')
+                    .and('have.text', 'Products');
             });
         });
 

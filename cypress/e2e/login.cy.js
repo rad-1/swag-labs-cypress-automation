@@ -8,20 +8,20 @@ const loginError = {
     passwordRequired: 'Epic sadface: Password is required',
 };
 
-describe('login page', { tags: '@loginPage' }, () => {
+describe('Login page', { tags: '@loginPage' }, () => {
     beforeEach(() => {
         cy.visit('/');
     });
 
-    context('when user views page', { tags: '@loginSanity' }, () => {
-        it('page title is visible', () => {
+    context('When a user views the page', { tags: '@loginSanity' }, () => {
+        it('Title is visible', () => {
             cy.get('.login_logo').should('have.text', 'Swag Labs');
         });
     });
 
-    context('when user attempts to log in', () => {
-        context('successful login', { tags: '@loginPositive' }, () => {
-            it('valid credentials', () => {
+    context('When a user attempts to login', () => {
+        context('Successful login', { tags: '@loginPositive' }, () => {
+            it('Valid username and password', () => {
                 cy.login(
                     credentials.username.standard,
                     credentials.password.valid,
@@ -30,33 +30,33 @@ describe('login page', { tags: '@loginPage' }, () => {
             });
         });
 
-        context('unsuccessful login', { tags: '@loginNegative' }, () => {
-            it('invalid username and password', () => {
+        context('Unsuccessful login', { tags: '@loginNegative' }, () => {
+            it('Invalid username and password', () => {
                 cy.login(credentials.username.invalid, credentials.password.invalid);
                 cy.get('[data-test="error"]').should('have.text', loginError.invalidCreds);
             });
 
-            it('invalid username', () => {
+            it('Invalid username', () => {
                 cy.login(credentials.username.invalid, credentials.password.valid);
                 cy.get('[data-test="error"]').should('have.text', loginError.invalidCreds);
             });
 
-            it('invalid password', () => {
+            it('Invalid password', () => {
                 cy.login(credentials.username.standard, credentials.password.invalid);
                 cy.get('[data-test="error"]').should('have.text', loginError.invalidCreds);
             });
 
-            it('empty string username', () => {
+            it('Empty string username', () => {
                 cy.login('', credentials.password.valid);
                 cy.get('[data-test="error"]').should('have.text', loginError.usernameRequired);
             });
 
-            it('empty string password', () => {
+            it('Empty string password', () => {
                 cy.login(credentials.username.standard, '');
                 cy.get('[data-test="error"]').should('have.text', loginError.passwordRequired);
             });
 
-            it('empty string username and password', () => {
+            it('Empty string username and password', () => {
                 cy.get('[data-test="login-button"]').click();
                 cy.get('[data-test="error"]').should('have.text', loginError.usernameRequired);
             });

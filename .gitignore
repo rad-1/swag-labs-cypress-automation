@@ -7,3 +7,6 @@ screenshots
 
 # Ignore reports folders and files
 mochawesome-report
+
+# Ignore misc. folders and files
+.DS_Store

@@ -11,9 +11,9 @@ This repo contains an automated testing project for the Swag Labs demo [website]
 
 ## Requirements
 * [Cypress System Requirements](https://docs.cypress.io/guides/getting-started/installing-cypress#System-requirements)
-  * This project was built on:
-    * Apple M1, MacOS 13.5.1 (22G90)
-    * Node 18.17.0
+  * This project was built using:
+    * Hardware: Apple M1, 16 GB
+    * Software: MacOS 13.5.1 (22G90), Node 18.17.0
 * Basic knowledge of JavaScript
 
 ## Recommended Tools

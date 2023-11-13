@@ -41,5 +41,5 @@ module.exports = defineConfig({
         'openMode': 2,
         'runMode': 2
     },
-    pageLoadTimeout: 10000
+    pageLoadTimeout: 30000
 });

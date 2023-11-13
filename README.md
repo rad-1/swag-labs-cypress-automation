@@ -34,7 +34,7 @@ This project currently tests the following areas of the website:
 
     ~~~ sh
     $ git clone git@github.com:rad-1/swag-labs-cypress-automation.git
-    $ cd cypress-framework
+    $ cd swag-labs-cypress-automation
     ~~~
 
 2. (Required) Install and use [Node.js](https://nodejs.org/en) or switch to it via [nvm](https://github.com/nvm-sh/nvm)

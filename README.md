@@ -1,5 +1,5 @@
 # 🛠 Cypress Framework 🛠
-This repo contains an automated testing project for the Swag Labs demo [website](https://www.saucedemo.com) and serves as a playground to try out both new and existing features of the Cypress testing framework.
+This repo contains an automated testing project for the Swag Labs demo [website](https://www.saucedemo.com) and serves as a playground to try out both new and existing features of the Cypress E2E testing framework.
 
 ## Table of Contents
 - [Requirements](#requirements)

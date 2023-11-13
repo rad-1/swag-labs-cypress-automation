@@ -1,5 +1,5 @@
 # 🛠 Swag Labs - Cypress Automation 🛠
-This repo contains an automated testing project for the Swag Labs demo [website](https://www.saucedemo.com) and serves as a playground to try out both new and existing features of the Cypress E2E testing framework, and Cypress tests are written in JavaScript.
+This repo contains an automated testing project for the Swag Labs demo [website](https://www.saucedemo.com) and serves as a playground to try out both new and existing features of the Cypress E2E testing framework. Cypress tests are currently written in JavaScript.
 
 ## Table of Contents
 - [Requirements](#requirements)
@@ -10,11 +10,13 @@ This repo contains an automated testing project for the Swag Labs demo [website]
 - [Contact Information](#contact-information)
 
 ## Requirements
+* [Node.js](https://nodejs.org/en/) 18.x or 20.x and above
 * [Cypress System Requirements](https://docs.cypress.io/guides/getting-started/installing-cypress#System-requirements)
-  * This project was built using:
-    * Hardware: Apple M1, 16 GB
-    * Software: MacOS 13.5.1 (22G90), Node 18.17.0
 * Basic knowledge of JavaScript
+
+Note that the project was built using:
+* Hardware: Apple M1, 16 GB
+* Software: MacOS 13.5.1 (22G90), Node 18.17.0
 
 ## Recommended Tools
 * [Node Package Manager](https://github.com/nvm-sh/nvm) for easy Node.js version control
@@ -49,29 +51,32 @@ This project currently tests the following areas of the website:
 4. (Optional) Run tests headed
 
     ~~~ sh
-    $ npm run cypress:open
+    $ npx cypress open
     ~~~
 
 5. (Optional) Run tests headless
 
     ~~~ sh
-    $ npm run cypress:run
+    $ npx cypress run
     ~~~
 
 ## Included Scripts
-1. To run specific tests, `TAGS` can be replaced with tags such as `@login`, `@smoke`, etc. depending on the tag found in the test (`*.cy.js`) file
+1. To run tests with specific tags, the value of `TAGS` can be replaced with tags found in each test file
+<br>
+<br/>
+For example, `@smoke` and `@login` are test tags that can be found in the `cypress/e2e/login.cy.js` test file
 
     ~~~ sh
-    $ npm run cypress:tagged --tags=TAGS
+    $ npm run tagged --TAGS=@smoke
     ~~~
 
-2. To lint your code
+3. To lint your code
 
     ~~~ sh
     $ npm run lint
     ~~~
 
-3. To lint and fix your code:
+4. To lint and fix your code:
     ~~~ sh
     $ npm run lint:fix
     ~~~

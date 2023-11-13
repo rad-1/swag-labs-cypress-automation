@@ -77,7 +77,7 @@ This project currently tests the following areas of the website:
     ~~~
 
 ## Support Documentation
-* [Cypress](https://www.cypress.io/) to learn more about the automation framework
+* [Cypress](https://www.cypress.io/) to learn more about the E2E testing framework
 * [ESLint](https://eslint.org/) for additional information around basic code linting
 * [@cypress/grep](https://github.com/cypress-io/cypress/tree/develop/npm/grep) to learn more about running tests selectively
 

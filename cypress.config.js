@@ -23,6 +23,10 @@ module.exports = defineConfig({
         },
         baseUrl: 'https://www.saucedemo.com'
     },
+    env: {
+        username: 'standard_user',
+        password: 'secret_sauce',
+    },
     reporter: 'spec',
     screenshotOnRunFailure: true,
     video: true,

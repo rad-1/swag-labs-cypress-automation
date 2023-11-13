@@ -4,6 +4,10 @@ const { defineConfig } = require('cypress');
 const fs = require('fs');
 
 module.exports = defineConfig({
+    env: {
+        username: 'standard_user',
+        password: 'secret_sauce',
+    },
     e2e: {
         setupNodeEvents(on, config) {
             on('after:spec', (spec, results) => {
@@ -23,13 +27,10 @@ module.exports = defineConfig({
         },
         baseUrl: 'https://www.saucedemo.com'
     },
-    env: {
-        username: 'standard_user',
-        password: 'secret_sauce',
-    },
     reporter: 'mochawesome',
     reporterOptions: {
-        reportFilename: 'results',
+        reportFilename: '[status]_[datetime]-[name]-report',
+        timestamp: 'shortDate',
         toConsole: true,
     },
     screenshotOnRunFailure: true,

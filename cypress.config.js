@@ -27,7 +27,11 @@ module.exports = defineConfig({
         username: 'standard_user',
         password: 'secret_sauce',
     },
-    reporter: 'spec',
+    reporter: 'mochawesome',
+    reporterOptions: {
+        reportFilename: 'results',
+        toConsole: true,
+    },
     screenshotOnRunFailure: true,
     video: true,
     videoCompression: true,

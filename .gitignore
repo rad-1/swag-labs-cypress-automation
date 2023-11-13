@@ -1,6 +1,9 @@
 # Ignore packages
 node_modules
 
-# Ignore Cypress files and folders
+# Ignore Cypress folders and files
 videos
 screenshots
+
+# Ignore reports folders and files
+mochawesome-report

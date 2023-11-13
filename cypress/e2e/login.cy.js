@@ -9,7 +9,7 @@ const generalErrTxt = 'Epic sadface: Username and password do not match any user
 const usernameErrTxt = 'Epic sadface: Username is required';
 const passwordErrTxt = 'Epic sadface: Password is required';
 
-describe('Login page', { tags: '@loginPage' }, () => {
+describe('Login page', { tags: ['@login', '@smoke'] }, () => {
     beforeEach(() => {
         cy.visit('/');
     });

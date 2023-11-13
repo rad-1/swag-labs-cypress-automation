@@ -1,17 +1,31 @@
-# Cypress Framework
-A playground for testing Cypress features and updates!
+# 🛠 Cypress Framework 🛠
+This repo contains an automated testing project for the Swag Labs demo [website](https://www.saucedemo.com) and serves as a playground to try out both new and existing features of the Cypress testing framework.
 
 ## Table of Contents
 - [Requirements](#requirements)
+- [Recommended Tools](#recommended-tools)
 - [Getting Started](#getting-started)
-- [Package Scripts](#package-scripts)
+- [Included Scripts](#included-scripts)
 - [Support Documentation](#support-documentation)
 - [Contact Information](#contact-information)
 
 ## Requirements
-* macOS 10.9 and above (Intel or Apple Silicon 64-bit (x64 or arm64))
-* Cypress supports Node.js v18.x or v20.x and above, but this project was built using v18.17.0
-* Some basic JavaScript knowledge
+* [Cypress System Requirements](https://docs.cypress.io/guides/getting-started/installing-cypress#System-requirements)
+  * This project was built on:
+    * Apple M1, MacOS 13.5.1 (22G90)
+    * Node 18.17.0
+* Basic knowledge of JavaScript
+
+## Recommended Tools
+* [Node Package Manager](https://github.com/nvm-sh/nvm) for easy Node.js version control
+
+## Scope
+This project currently tests the following areas of the website:
+* Login: Page load and validation for different username-password combinations
+* Inventory: (coming soon...)
+* Cart: (coming soon...)
+* Checkout: (coming soon...)
+* Navigation: (coming soon...)
 
 ## Getting Started
 1. (Required) Clone the repository and switch to it via terminal
@@ -20,40 +34,52 @@ A playground for testing Cypress features and updates!
     $ cd cypress-framework
     ~~~
 
-2. (Required) Install and use [Node.js](https://nodejs.org/en) v18.17.0 or switch to it via [nvm](https://github.com/nvm-sh/nvm)
+2. (Required) Install and use [Node.js](https://nodejs.org/en) 18.17.0 or switch to it via [nvm](https://github.com/nvm-sh/nvm)
 
     ~~~ sh
     $ nvm use
     ~~~
 
-3. (Required) Install dependencies found in `package.json`
+3. (Required) Install dependencies
 
     ~~~ sh
     $ npm i
     ~~~
 
-4. (Optional) Run the tests, headed
+4. (Optional) Run tests headed
 
     ~~~ sh
-    $ npx cypress open
+    $ npm run cypress:open
     ~~~
 
-5. (Optional) Run the tests, headless
+5. (Optional) Run tests headless
 
     ~~~ sh
-    $ npx cypress run
+    $ npm run cypress:run
     ~~~
 
-## Package Scripts
-* `$ npm run cypress:open` to run all Cypress tests, headed
-* `$ npm run cypress:run` to run all Cypress tests, headless
-* `$ npm run cypress:tagged --tags=TAGS` to run Cypress tests, headless, where `TAGS` can be replaced with tags such as `@loginPage`, `@loginSanity`, `@loginPositive`, and `@loginNegative`
-* `$ npm run lint` to lint your code
-* `$ npm run lint:fix` to lint and fix your code
+## Included Scripts
+1. To run specific tests, `TAGS` can be replaced with tags such as `@login`, `@smoke`, etc. depending on the tag found in the test (`*.cy.js`) file
+
+    ~~~ sh
+    $ npm run cypress:tagged --tags=TAGS
+    ~~~
+
+2. To lint your code
+
+    ~~~ sh
+    $ npm run lint
+    ~~~
+
+3. To lint and fix your code:
+    ~~~ sh
+    $ npm run lint:fix
+    ~~~
 
 ## Support Documentation
-* [Cypress](https://www.cypress.io/) for documentation on test creation and debugging
-* [ESLint](https://eslint.org/) for information around basic code linting
+* [Cypress](https://www.cypress.io/) to learn more about the automation framework
+* [ESLint](https://eslint.org/) for additional information around basic code linting
+* [@cypress/grep](https://github.com/cypress-io/cypress/tree/develop/npm/grep) to learn more about running tests selectively
 
 ## Contact Information
 Feel free to send a message to my inbox or connect with me on [LinkedIn](https://www.linkedin.com/in/joshuatipton/). I'm always looking for new opportunities. Let's chat!

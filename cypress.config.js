@@ -36,6 +36,5 @@ module.exports = defineConfig({
         'openMode': 2,
         'runMode': 2
     },
-    pageLoadTimeout: 10000,
-    grepOmitFiltered: true
+    pageLoadTimeout: 10000
 });

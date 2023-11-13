@@ -9,6 +9,6 @@
   "scripts": {
     "tagged": "cypress run --env grepTags=$npm_config_tags,grepOmitFiltered=true",
     "lint": "eslint . --ext .js,.jsx",
-    "lint:fix": "eslint . --fix --ext .js,.jsx"
+    "lint-fix": "eslint . --fix --ext .js,.jsx"
   }
 }

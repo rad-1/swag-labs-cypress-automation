@@ -78,7 +78,7 @@ For example, `@smoke` and `@login` are test tags that can be found in the `cypre
 
 4. To lint and fix your code:
     ~~~ sh
-    $ npm run lint:fix
+    $ npm run lint-fix
     ~~~
 
 ## Support Documentation

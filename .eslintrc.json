@@ -22,5 +22,6 @@
             "always"
         ],
         "no-trailing-spaces": "error"
-    }
+    },
+    "ignorePatterns": ["mochawesome-report"]
 }

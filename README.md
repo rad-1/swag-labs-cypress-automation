@@ -37,7 +37,7 @@ This project currently tests the following areas of the website:
     $ cd cypress-framework
     ~~~
 
-2. (Required) Install and use [Node.js](https://nodejs.org/en) 18.17.0 or switch to it via [nvm](https://github.com/nvm-sh/nvm)
+2. (Required) Install and use [Node.js](https://nodejs.org/en) or switch to it via [nvm](https://github.com/nvm-sh/nvm)
 
     ~~~ sh
     $ nvm use

@@ -61,9 +61,7 @@ This project currently tests the following areas of the website:
     ~~~
 
 ## Included Scripts
-1. To run tests with specific tags, the value of `TAGS` can be replaced with tags found in each test file
-<br>
-<br/>
+1. To run tests with specific tags, the value of `TAGS` can be replaced with tags found in each test file\
 For example, `@smoke` and `@login` are test tags that can be found in the `cypress/e2e/login.cy.js` test file
 
     ~~~ sh

@@ -10,7 +10,7 @@ This repo contains an automated testing project for the Swag Labs demo [website]
 - [Contact Information](#contact-information)
 
 ## Requirements
-* [Node.js](https://nodejs.org/en/) 18.x or 20.x and above
+* [Node.js and NPM](https://nodejs.org/en/) 18.x or 20.x and above
 * [Cypress System Requirements](https://docs.cypress.io/guides/getting-started/installing-cypress#System-requirements)
 * Basic knowledge of JavaScript
 
@@ -37,7 +37,7 @@ This project currently tests the following areas of the website:
     $ cd swag-labs-cypress-automation
     ~~~
 
-2. (Required) Install a supported version of [Node.js](https://nodejs.org/en) or install and use the project's version from the `.nvmrc` file using [nvm](https://github.com/nvm-sh/nvm)
+2. (Required) Install a supported version of [Node.js and NPM]((https://nodejs.org/en) or install and use the project's Node.js version from the `.nvmrc` file by using [Node Version Manager](https://github.com/nvm-sh/nvm)
 
     ~~~ sh
     $ nvm install

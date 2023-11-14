@@ -19,7 +19,7 @@ Note that the project was built using:
 * Software: MacOS 13.5.1 (22G90), Node 18.17.0
 
 ## Recommended Tools
-* [Node Package Manager](https://github.com/nvm-sh/nvm) for easy Node.js version control
+* [Node Version Manager](https://github.com/nvm-sh/nvm) for easy Node.js version control
 
 ## Scope
 This project currently tests the following areas of the website:

@@ -1,13 +1,17 @@
 // cypress/e2e/login.cy.js
 
-import {
-    CREDENTIALS,
-    LOGIN_ERRORS,
-    usernameField,
-    passwordField,
-    loginButton,
-    loginError
-} from '../support/utils/login.utils';
+const CREDENTIALS = {
+    VALID_USERNAME: Cypress.env('username'),
+    VALID_PASSWORD: Cypress.env('password'),
+    INVALID_USERNAME: 'invalid_username',
+    INVALID_PASSWORD: 'invalid_password'
+};
+
+const LOGIN_ERRORS = {
+    NO_MATCH: 'Epic sadface: Username and password do not match any user in this service',
+    USERNAME_REQUIRED: 'Epic sadface: Username is required',
+    PASSWORD_REQUIRED: 'Epic sadface: Password is required'
+};
 
 describe('login page', { tags: ['@login', '@smoke'] }, () => {
     beforeEach(() => {
@@ -23,6 +27,11 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
     });
 
     context('user attempts login', () => {
+        const usernameField = () => cy.getBySel('username');
+        const passwordField = () => cy.getBySel('password');
+        const loginButton = () => cy.getBySel('login-button');
+        const loginError = () => cy.getBySel('error');
+
         beforeEach(() => {
             usernameField().clear();
             passwordField().clear();
@@ -43,7 +52,6 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
                 usernameField().type(CREDENTIALS.INVALID_USERNAME);
                 passwordField().type(CREDENTIALS.VALID_PASSWORD);
                 loginButton().click();
-
                 loginError().should('have.text', LOGIN_ERRORS.NO_MATCH);
             });
 
@@ -51,7 +59,6 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
                 usernameField().type(CREDENTIALS.VALID_USERNAME);
                 passwordField().type(CREDENTIALS.INVALID_PASSWORD);
                 loginButton().click();
-
                 loginError().should('have.text', LOGIN_ERRORS.NO_MATCH);
             });
 
@@ -59,27 +66,23 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
                 usernameField().type(CREDENTIALS.INVALID_USERNAME);
                 passwordField().type(CREDENTIALS.INVALID_PASSWORD);
                 loginButton().click();
-
                 loginError().should('have.text', LOGIN_ERRORS.NO_MATCH);
             });
 
             it('empty username field', () => {
                 passwordField().type(CREDENTIALS.VALID_PASSWORD);
                 loginButton().click();
-
                 loginError().should('have.text', LOGIN_ERRORS.USERNAME_REQUIRED);
             });
 
             it('empty password field', () => {
                 usernameField().type(CREDENTIALS.VALID_USERNAME);
                 loginButton().click();
-
                 loginError().should('have.text', LOGIN_ERRORS.PASSWORD_REQUIRED);
             });
 
             it('empty username and password fields', () => {
                 loginButton().click();
-
                 loginError().should('have.text', LOGIN_ERRORS.USERNAME_REQUIRED);
             });
         });

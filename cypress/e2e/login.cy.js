@@ -1,70 +1,86 @@
 // cypress/e2e/login.cy.js
 
-const validUsername = Cypress.env('username');
-const validPassword = Cypress.env('password');
-const invalidUsername = `${Cypress.env('username')}_invalid`;
-const invalidPassword = `${Cypress.env('password')}_invalid`;
+import {
+    credentials,
+    loginErrors,
+    usernameField,
+    passwordField,
+    loginButton,
+    loginError
+} from '../support/utils/login.utils';
 
-const generalErrTxt = 'Epic sadface: Username and password do not match any user in this service';
-const usernameErrTxt = 'Epic sadface: Username is required';
-const passwordErrTxt = 'Epic sadface: Password is required';
-
-describe('Login page', { tags: ['@login', '@smoke'] }, () => {
+describe('login page', { tags: ['@login', '@smoke'] }, () => {
     beforeEach(() => {
         cy.visit('/');
     });
 
-    context('When a user views the page', { tags: '@loginSanity' }, () => {
-        it('The title is visible', () => {
+    context('user views page', { tags: '@loginSanity' }, () => {
+        it('title is visible', () => {
             cy.get('.login_logo')
                 .should('be.visible')
                 .and('have.text', 'Swag Labs');
         });
     });
 
-    context('When a user attempts to log in', () => {
-        context('The user can successfully login with', { tags: '@loginPositive' }, () => {
-            it('Valid username and password', () => {
-                cy.login(validUsername, validPassword);
-                cy.get('.title')
-                    .should('be.visible')
-                    .and('have.text', 'Products');
-            });
+    context('user attempts login', () => {
+        beforeEach(() => {
+            usernameField().clear();
+            passwordField().clear();
         });
 
-        context('The user cannot log in with', { tags: '@loginNegative' }, () => {
-            it('Invalid username', () => {
-                cy.login(invalidUsername, validPassword);
-                cy.getBySel('error').should('have.text', generalErrTxt);
+        it('successful login with valid username and password', { tags: '@loginPositive' }, () => {
+            usernameField().type(credentials.VALID_USERNAME);
+            passwordField().type(credentials.VALID_PASSWORD);
+            loginButton().click();
+
+            cy.get('.title')
+                .should('be.visible')
+                .and('have.text', 'Products');
+        });
+
+        context('unsuccessful login with', { tags: '@loginNegative' }, () => {
+            it('invalid username', () => {
+                usernameField().type(credentials.INVALID_USERNAME);
+                passwordField().type(credentials.VALID_PASSWORD);
+                loginButton().click();
+
+                loginError().should('have.text', loginErrors.NO_MATCH);
             });
 
-            it('Invalid password', () => {
-                cy.login(validUsername, invalidPassword);
-                cy.getBySel('error').should('have.text', generalErrTxt);
+            it('invalid password', () => {
+                usernameField().type(credentials.VALID_USERNAME);
+                passwordField().type(credentials.INVALID_PASSWORD);
+                loginButton().click();
+
+                loginError().should('have.text', loginErrors.NO_MATCH);
             });
 
-            it('Invalid username and password', () => {
-                cy.login(invalidUsername, invalidPassword);
-                cy.getBySel('error').should('have.text', generalErrTxt);
+            it('invalid username and password', () => {
+                usernameField().type(credentials.INVALID_USERNAME);
+                passwordField().type(credentials.INVALID_PASSWORD);
+                loginButton().click();
+
+                loginError().should('have.text', loginErrors.NO_MATCH);
             });
 
-            it('No username', () => {
-                cy.getBySel('username').clear();
-                cy.getBySel('password').type(validPassword);
-                cy.getBySel('login-button').click();
-                cy.getBySel('error').should('have.text', usernameErrTxt);
+            it('empty username field', () => {
+                passwordField().type(credentials.VALID_PASSWORD);
+                loginButton().click();
+
+                loginError().should('have.text', loginErrors.USERNAME_REQUIRED);
             });
 
-            it('No password', () => {
-                cy.getBySel('username').type(validUsername);
-                cy.getBySel('password').clear();
-                cy.getBySel('login-button').click();
-                cy.getBySel('error').should('have.text', passwordErrTxt);
+            it('empty password field', () => {
+                usernameField().type(credentials.VALID_USERNAME);
+                loginButton().click();
+
+                loginError().should('have.text', loginErrors.PASSWORD_REQUIRED);
             });
 
-            it('No username and password', () => {
-                cy.getBySel('login-button').click();
-                cy.getBySel('error').should('have.text', usernameErrTxt);
+            it('empty username and password fields', () => {
+                loginButton().click();
+
+                loginError().should('have.text', loginErrors.USERNAME_REQUIRED);
             });
         });
     });

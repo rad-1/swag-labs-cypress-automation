@@ -1,3 +1,5 @@
+// cypress/support/utils/login.utils.js
+
 const selectors = {
     USERNAME_FIELD: 'username',
     PASSWORD_FIELD: 'password',

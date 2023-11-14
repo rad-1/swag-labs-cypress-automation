@@ -1,18 +1,5 @@
 // cypress/e2e/login.cy.js
 
-const CREDENTIALS = {
-    VALID_USERNAME: Cypress.env('username'),
-    VALID_PASSWORD: Cypress.env('password'),
-    INVALID_USERNAME: 'invalid_username',
-    INVALID_PASSWORD: 'invalid_password'
-};
-
-const LOGIN_ERRORS = {
-    NO_MATCH: 'Epic sadface: Username and password do not match any user in this service',
-    USERNAME_REQUIRED: 'Epic sadface: Username is required',
-    PASSWORD_REQUIRED: 'Epic sadface: Password is required'
-};
-
 describe('login page', { tags: ['@login', '@smoke'] }, () => {
     beforeEach(() => {
         cy.visit('/');
@@ -27,10 +14,24 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
     });
 
     context('user attempts login', () => {
+        // trying out different ideas from https://www.cypress.io/blog/2019/01/03/stop-using-page-objects-and-start-using-app-actions
         const usernameField = () => cy.getBySel('username');
         const passwordField = () => cy.getBySel('password');
         const loginButton = () => cy.getBySel('login-button');
         const loginError = () => cy.getBySel('error');
+
+        const CREDENTIALS = {
+            VALID_USERNAME: Cypress.env('username'),
+            VALID_PASSWORD: Cypress.env('password'),
+            INVALID_USERNAME: 'invalid_username',
+            INVALID_PASSWORD: 'invalid_password'
+        };
+
+        const LOGIN_ERRORS = {
+            NO_MATCH: 'Epic sadface: Username and password do not match any user in this service',
+            USERNAME_REQUIRED: 'Epic sadface: Username is required',
+            PASSWORD_REQUIRED: 'Epic sadface: Password is required'
+        };
 
         beforeEach(() => {
             usernameField().clear();

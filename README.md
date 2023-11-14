@@ -37,9 +37,10 @@ This project currently tests the following areas of the website:
     $ cd swag-labs-cypress-automation
     ~~~
 
-2. (Required) Install and use [Node.js](https://nodejs.org/en) or switch to it via [nvm](https://github.com/nvm-sh/nvm)
+2. (Required) Install a supported version of [Node.js](https://nodejs.org/en) or install and use the project's version from the `.nvmrc` file using [nvm](https://github.com/nvm-sh/nvm)
 
     ~~~ sh
+    $ nvm install
     $ nvm use
     ~~~
 

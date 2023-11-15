@@ -1,3 +1,5 @@
+// cypress/support/constants/login.constants.js
+
 const CREDENTIALS = {
     VALID_USERNAME: Cypress.env('username'),
     VALID_PASSWORD: Cypress.env('password'),

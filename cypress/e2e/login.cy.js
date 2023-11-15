@@ -1,5 +1,7 @@
 // cypress/e2e/login.cy.js
 
+import { CREDENTIALS, LOGIN_ERRORS } from '../support/constants/login.constants';
+
 describe('login page', { tags: ['@login', '@smoke'] }, () => {
     beforeEach(() => {
         cy.visit('/');
@@ -14,34 +16,13 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
     });
 
     context('user attempts login', () => {
-        // trying out different ideas from https://www.cypress.io/blog/2019/01/03/stop-using-page-objects-and-start-using-app-actions
-        const usernameField = () => cy.getBySel('username');
-        const passwordField = () => cy.getBySel('password');
-        const loginButton = () => cy.getBySel('login-button');
-        const loginError = () => cy.getBySel('error');
-
-        const CREDENTIALS = {
-            VALID_USERNAME: Cypress.env('username'),
-            VALID_PASSWORD: Cypress.env('password'),
-            INVALID_USERNAME: 'invalid_username',
-            INVALID_PASSWORD: 'invalid_password'
-        };
-
-        const LOGIN_ERRORS = {
-            NO_MATCH: 'Epic sadface: Username and password do not match any user in this service',
-            USERNAME_REQUIRED: 'Epic sadface: Username is required',
-            PASSWORD_REQUIRED: 'Epic sadface: Password is required'
-        };
-
         beforeEach(() => {
-            usernameField().clear();
-            passwordField().clear();
+            cy.getBySel('username').clear();
+            cy.getBySel('password').clear();
         });
 
         it('successful login with valid username and password', { tags: '@loginPositive' }, () => {
-            usernameField().type(CREDENTIALS.VALID_USERNAME);
-            passwordField().type(CREDENTIALS.VALID_PASSWORD);
-            loginButton().click();
+            cy.login(CREDENTIALS.VALID_USERNAME, CREDENTIALS.VALID_PASSWORD);
 
             cy.get('.title')
                 .should('be.visible')
@@ -50,47 +31,47 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
 
         context('unsuccessful login with', { tags: '@loginNegative' }, () => {
             it('invalid username', () => {
-                usernameField().type(CREDENTIALS.INVALID_USERNAME);
-                passwordField().type(CREDENTIALS.VALID_PASSWORD);
-                loginButton().click();
+                cy.login(CREDENTIALS.INVALID_USERNAME, CREDENTIALS.VALID_PASSWORD);
 
-                loginError().should('be.visible').and('have.text', LOGIN_ERRORS.NO_MATCH);
+                cy.getBySel('error').should('be.visible').and('have.text', LOGIN_ERRORS.NO_MATCH);
             });
 
             it('invalid password', () => {
-                usernameField().type(CREDENTIALS.VALID_USERNAME);
-                passwordField().type(CREDENTIALS.INVALID_PASSWORD);
-                loginButton().click();
+                cy.login(CREDENTIALS.VALID_USERNAME, CREDENTIALS.INVALID_PASSWORD);
 
-                loginError().should('be.visible').and('have.text', LOGIN_ERRORS.NO_MATCH);
+                cy.getBySel('error').should('be.visible').and('have.text', LOGIN_ERRORS.NO_MATCH);
             });
 
             it('invalid username and password', () => {
-                usernameField().type(CREDENTIALS.INVALID_USERNAME);
-                passwordField().type(CREDENTIALS.INVALID_PASSWORD);
-                loginButton().click();
+                cy.login(CREDENTIALS.INVALID_USERNAME, CREDENTIALS.INVALID_PASSWORD);
 
-                loginError().should('be.visible').and('have.text', LOGIN_ERRORS.NO_MATCH);
+                cy.getBySel('error').should('be.visible').and('have.text', LOGIN_ERRORS.NO_MATCH);
             });
 
             it('empty username field', () => {
-                passwordField().type(CREDENTIALS.VALID_PASSWORD);
-                loginButton().click();
+                cy.getBySel('password').type(CREDENTIALS.VALID_PASSWORD);
+                cy.getBySel('login-button').click();
 
-                loginError().should('be.visible').and('have.text', LOGIN_ERRORS.USERNAME_REQUIRED);
+                cy.getBySel('error').should('be.visible').and('have.text', LOGIN_ERRORS.USERNAME_REQUIRED);
             });
 
             it('empty password field', () => {
-                usernameField().type(CREDENTIALS.VALID_USERNAME);
-                loginButton().click();
+                cy.getBySel('username').type(CREDENTIALS.VALID_USERNAME);
+                cy.getBySel('login-button').click();
 
-                loginError().should('be.visible').and('have.text', LOGIN_ERRORS.PASSWORD_REQUIRED);
+                cy.getBySel('error').should('be.visible').and('have.text', LOGIN_ERRORS.PASSWORD_REQUIRED);
             });
 
             it('empty username and password fields', () => {
-                loginButton().click();
+                cy.getBySel('login-button').click();
 
-                loginError().should('be.visible').and('have.text', LOGIN_ERRORS.USERNAME_REQUIRED);
+                cy.getBySel('error').should('be.visible').and('have.text', LOGIN_ERRORS.USERNAME_REQUIRED);
+            });
+
+            it('locked out username', () => {
+                cy.login(CREDENTIALS.LOCKED_OUT_USERNAME, CREDENTIALS.VALID_PASSWORD);
+
+                cy.getBySel('error').should('be.visible').and('have.text', LOGIN_ERRORS.LOCKED_OUT);
             });
         });
     });

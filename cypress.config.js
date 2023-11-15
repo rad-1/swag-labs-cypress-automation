@@ -17,7 +17,7 @@ module.exports = defineConfig({
                         test.attempts.some((attempt) => attempt.state === 'failed')
                     );
                     if (!failures) {
-                    // delete the video if the spec passed and no tests retried
+                        // delete the video if the spec passed and no tests retried
                         fs.unlinkSync(results.video);
                     }
                 }
@@ -31,7 +31,7 @@ module.exports = defineConfig({
     reporterOptions: {
         reportFilename: '[status]_[datetime]-[name]-report',
         timestamp: 'shortDate',
-        toConsole: true,
+        quiet: true,
     },
     screenshotOnRunFailure: true,
     video: true,
@@ -39,7 +39,7 @@ module.exports = defineConfig({
     watchForFileChanges: true,
     retries: {
         'openMode': 2,
-        'runMode': 2
+        'runMode': 0
     },
     pageLoadTimeout: 30000
 });

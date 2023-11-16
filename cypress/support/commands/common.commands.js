@@ -6,6 +6,7 @@ Cypress.Commands.add('getBySel', (selector) => {
 
 Cypress.Commands.add('loginViaUi', () => {
     cy.visit('/', {
+        // https://github.com/cypress-io/cypress/issues/27501
         onBeforeLoad(win) {
             delete win.navigator.__proto__.serviceWorker
         }

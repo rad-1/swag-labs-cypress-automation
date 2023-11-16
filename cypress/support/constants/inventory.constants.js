@@ -1,5 +1,9 @@
 // cypress/support/constants/inventory.constants.js
 
+const INVENTORY_LAYOUT = {
+    TITLE: 'Products'
+}
+
 const PRODUCTS = [
     {
         NAME: 'Sauce Labs Backpack',
@@ -27,4 +31,4 @@ const PRODUCTS = [
     },
 ]
 
-export { PRODUCTS }
+export { INVENTORY_LAYOUT, PRODUCTS }

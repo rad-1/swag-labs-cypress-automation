@@ -1,5 +1,9 @@
 // cypress/support/constants/login.constants.js
 
+const LOGIN_LAYOUT = {
+    TITLE: 'Swag Labs'
+}
+
 const CREDENTIALS = {
     VALID_USERNAME: Cypress.env('username'),
     VALID_PASSWORD: Cypress.env('password'),
@@ -16,4 +20,4 @@ const LOGIN_ERRORS = {
     LOCKED_OUT: 'Epic sadface: Sorry, this user has been locked out.'
 }
 
-export { CREDENTIALS, LOGIN_ERRORS }
+export { LOGIN_LAYOUT, CREDENTIALS, LOGIN_ERRORS }

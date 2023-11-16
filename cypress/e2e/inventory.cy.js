@@ -1,6 +1,9 @@
 // cypress/e2e/inventory.cy.js
 
-import { PRODUCTS } from '../support/constants/inventory.constants'
+import {
+    INVENTORY_LAYOUT,
+    PRODUCTS
+} from '../support/constants/inventory.constants'
 
 describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
     beforeEach(() => {
@@ -11,7 +14,7 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
         it('title is visible', () => {
             cy.get('span.title')
                 .should('be.visible')
-                .and('have.text', 'Products')
+                .and('have.text', INVENTORY_LAYOUT.TITLE)
         })
 
         it('six products are visible', () => {

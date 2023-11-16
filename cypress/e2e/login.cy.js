@@ -1,6 +1,11 @@
 // cypress/e2e/login.cy.js
 
-import { CREDENTIALS, LOGIN_ERRORS } from '../support/constants/login.constants'
+import {
+    LOGIN_LAYOUT,
+    CREDENTIALS,
+    LOGIN_ERRORS
+} from '../support/constants/login.constants'
+import { INVENTORY_LAYOUT } from '../support/constants/inventory.constants'
 
 describe('login page', { tags: ['@login', '@smoke'] }, () => {
     beforeEach(() => {
@@ -11,7 +16,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
         it('title is visible', () => {
             cy.get('.login_logo')
                 .should('be.visible')
-                .and('have.text', 'Swag Labs')
+                .and('have.text', LOGIN_LAYOUT.TITLE)
         })
     })
 
@@ -19,11 +24,14 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
         it('successful login with valid username and password', {
             tags: '@loginPositive'
         }, () => {
-            cy.login(CREDENTIALS.VALID_USERNAME, CREDENTIALS.VALID_PASSWORD)
+            cy.login(
+                CREDENTIALS.VALID_USERNAME,
+                CREDENTIALS.VALID_PASSWORD
+            )
 
             cy.get('.title')
                 .should('be.visible')
-                .and('have.text', 'Products')
+                .and('have.text', INVENTORY_LAYOUT.TITLE)
         })
 
         context('unsuccessful login with', { tags: '@loginNegative' }, () => {

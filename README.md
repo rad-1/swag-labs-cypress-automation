@@ -24,7 +24,7 @@ Note that the project was built using:
 ## Scope
 This project currently tests the following areas of the website:
 * Login: Page load and validation for different username-password combinations
-* Inventory: (coming soon...)
+* Inventory: Product and price validation, and product sorting by name and price
 * Cart: (coming soon...)
 * Checkout: (coming soon...)
 * Navigation: (coming soon...)

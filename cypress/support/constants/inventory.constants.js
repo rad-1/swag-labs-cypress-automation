@@ -1,3 +1,5 @@
+// cypress/support/constants/inventory.constants.js
+
 const PRODUCTS = [
     {
         NAME: 'Sauce Labs Backpack',
@@ -23,6 +25,6 @@ const PRODUCTS = [
         NAME: 'Test.allTheThings() T-Shirt (Red)',
         PRICE: '$15.99'
     },
-];
+]
 
-export { PRODUCTS };
+export { PRODUCTS }

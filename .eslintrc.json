@@ -17,11 +17,11 @@
             "error",
             "single"
         ],
-        "semi": [
+        "no-trailing-spaces": "error",
+        "max-len": [
             "error",
-            "always"
-        ],
-        "no-trailing-spaces": "error"
+            80
+        ]
     },
     "ignorePatterns": ["mochawesome-report"]
 }

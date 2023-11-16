@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 // cypress.config.js
 
-const { defineConfig } = require('cypress');
-const fs = require('fs');
+const { defineConfig } = require('cypress')
+const fs = require('fs')
 
 module.exports = defineConfig({
     env: {
@@ -15,15 +16,15 @@ module.exports = defineConfig({
                     // Do we have failures for any retry attempts?
                     const failures = results.tests.some((test) =>
                         test.attempts.some((attempt) => attempt.state === 'failed')
-                    );
+                    )
                     if (!failures) {
                         // delete the video if the spec passed and no tests retried
-                        fs.unlinkSync(results.video);
+                        fs.unlinkSync(results.video)
                     }
                 }
-            });
-            require('@cypress/grep/src/plugin')(config);
-            return config;
+            })
+            require('@cypress/grep/src/plugin')(config)
+            return config
         },
         baseUrl: 'https://www.saucedemo.com'
     },
@@ -42,4 +43,4 @@ module.exports = defineConfig({
         'runMode': 0
     },
     pageLoadTimeout: 30000
-});
+})

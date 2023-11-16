@@ -1,12 +1,12 @@
-# Ignore packages
+# dependencies
 node_modules
 
-# Ignore Cypress folders and files
+# testing
 videos
 screenshots
 
-# Ignore reports folders and files
+# reports
 mochawesome-report
 
-# Ignore misc. folders and files
+# misc
 .DS_Store

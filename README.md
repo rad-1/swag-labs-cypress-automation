@@ -34,17 +34,11 @@ This project currently tests the following areas of the website:
 
     ~~~ sh
     $ git clone git@github.com:rad-1/swag-labs-cypress-automation.git
-    $ cd swag-labs-cypress-automation
     ~~~
 
-2. (Required) Install a supported version of [Node.js and NPM](https://nodejs.org/en) or install and use the project's Node.js version from the `.nvmrc` file by using [Node Version Manager](https://github.com/nvm-sh/nvm)
+2. (Required) Install a supported version of [Node.js and NPM](https://nodejs.org/en) or install [Node Version Manager](https://github.com/nvm-sh/nvm) to install and use the Node.js version found in the `.nvmrc` file
 
-    ~~~ sh
-    $ nvm install
-    $ nvm use
-    ~~~
-
-3. (Required) Install dependencies
+3. (Required) Install dependencies for the web application and Cypress tests
 
     ~~~ sh
     $ npm i
@@ -53,13 +47,13 @@ This project currently tests the following areas of the website:
 4. (Optional) Run tests headed
 
     ~~~ sh
-    $ npx cypress open
+    $ npm run cy:open
     ~~~
 
 5. (Optional) Run tests headless
 
     ~~~ sh
-    $ npx cypress run
+    $ npm run cy:run
     ~~~
 
 ## Included Scripts
@@ -68,7 +62,7 @@ This project currently tests the following areas of the website:
 For example, `@smoke` and `@login` are test tags that can be found in the `cypress/e2e/login.cy.js` test file
 
     ~~~ sh
-    $ npm run tagged --TAGS=@smoke
+    $ npm run cy:tagged --TAGS=@smoke
     ~~~
 
 3. To lint your code
@@ -77,9 +71,9 @@ For example, `@smoke` and `@login` are test tags that can be found in the `cypre
     $ npm run lint
     ~~~
 
-4. To lint and fix your code:
+4. To lint and fix your code
     ~~~ sh
-    $ npm run lint-fix
+    $ npm run lint:fix
     ~~~
 
 ## Support Documentation

@@ -4,7 +4,7 @@ const INVENTORY_LAYOUT = {
     TITLE: 'Products'
 }
 
-const PRODUCTS = [
+const INVENTORY_PRODUCTS = [
     {
         NAME: 'Sauce Labs Backpack',
         PRICE: '$29.99',
@@ -31,4 +31,4 @@ const PRODUCTS = [
     },
 ]
 
-export { INVENTORY_LAYOUT, PRODUCTS }
+export { INVENTORY_LAYOUT, INVENTORY_PRODUCTS }

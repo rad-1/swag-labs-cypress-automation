@@ -2,7 +2,7 @@
 
 import {
     LOGIN_LAYOUT,
-    CREDENTIALS,
+    LOGIN_CREDENTIALS,
     LOGIN_ERRORS
 } from '../support/constants/login.constants'
 import { INVENTORY_LAYOUT } from '../support/constants/inventory.constants'
@@ -25,8 +25,8 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
             tags: '@loginPositive'
         }, () => {
             cy.login(
-                CREDENTIALS.VALID_USERNAME,
-                CREDENTIALS.VALID_PASSWORD
+                LOGIN_CREDENTIALS.VALID_USERNAME,
+                LOGIN_CREDENTIALS.VALID_PASSWORD
             )
 
             cy.get('.title')
@@ -37,8 +37,8 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
         context('unsuccessful login with', { tags: '@loginNegative' }, () => {
             it('invalid username', () => {
                 cy.login(
-                    CREDENTIALS.INVALID_USERNAME,
-                    CREDENTIALS.VALID_PASSWORD
+                    LOGIN_CREDENTIALS.INVALID_USERNAME,
+                    LOGIN_CREDENTIALS.VALID_PASSWORD
                 )
 
                 cy.getBySel('error')
@@ -48,8 +48,8 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
 
             it('invalid password', () => {
                 cy.login(
-                    CREDENTIALS.VALID_USERNAME,
-                    CREDENTIALS.INVALID_PASSWORD
+                    LOGIN_CREDENTIALS.VALID_USERNAME,
+                    LOGIN_CREDENTIALS.INVALID_PASSWORD
                 )
 
                 cy.getBySel('error')
@@ -59,8 +59,8 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
 
             it('invalid username and password', () => {
                 cy.login(
-                    CREDENTIALS.INVALID_USERNAME,
-                    CREDENTIALS.INVALID_PASSWORD
+                    LOGIN_CREDENTIALS.INVALID_USERNAME,
+                    LOGIN_CREDENTIALS.INVALID_PASSWORD
                 )
 
                 cy.getBySel('error')
@@ -70,7 +70,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
 
             it('empty username field', () => {
                 cy.getBySel('username').clear()
-                cy.getBySel('password').type(CREDENTIALS.VALID_PASSWORD)
+                cy.getBySel('password').type(LOGIN_CREDENTIALS.VALID_PASSWORD)
                 cy.getBySel('login-button').click()
 
                 cy.getBySel('error')
@@ -80,7 +80,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
 
             it('empty password field', () => {
                 cy.getBySel('password').clear()
-                cy.getBySel('username').type(CREDENTIALS.VALID_USERNAME)
+                cy.getBySel('username').type(LOGIN_CREDENTIALS.VALID_USERNAME)
                 cy.getBySel('login-button').click()
 
                 cy.getBySel('error')
@@ -100,8 +100,8 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
 
             it('locked out username', () => {
                 cy.login(
-                    CREDENTIALS.LOCKED_OUT_USERNAME,
-                    CREDENTIALS.VALID_PASSWORD
+                    LOGIN_CREDENTIALS.LOCKED_OUT_USERNAME,
+                    LOGIN_CREDENTIALS.VALID_PASSWORD
                 )
 
                 cy.getBySel('error')

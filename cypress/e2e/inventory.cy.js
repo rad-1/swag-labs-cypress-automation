@@ -2,7 +2,7 @@
 
 import {
     INVENTORY_LAYOUT,
-    PRODUCTS
+    INVENTORY_PRODUCTS
 } from '../support/constants/inventory.constants'
 
 describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
@@ -24,7 +24,7 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
         })
 
         it('product names and prices are visible', () => {
-            PRODUCTS.forEach((product, index) => {
+            INVENTORY_PRODUCTS.forEach((product, index) => {
                 cy.get('div.inventory_item')
                     .eq(index)
                     .within(() => {

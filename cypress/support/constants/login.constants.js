@@ -4,7 +4,7 @@ const LOGIN_LAYOUT = {
     TITLE: 'Swag Labs'
 }
 
-const CREDENTIALS = {
+const LOGIN_CREDENTIALS = {
     VALID_USERNAME: Cypress.env('username'),
     VALID_PASSWORD: Cypress.env('password'),
     INVALID_USERNAME: 'invalid_username',
@@ -20,4 +20,4 @@ const LOGIN_ERRORS = {
     LOCKED_OUT: 'Epic sadface: Sorry, this user has been locked out.'
 }
 
-export { LOGIN_LAYOUT, CREDENTIALS, LOGIN_ERRORS }
+export { LOGIN_LAYOUT, LOGIN_CREDENTIALS, LOGIN_ERRORS }

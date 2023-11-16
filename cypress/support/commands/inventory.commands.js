@@ -1,6 +1,6 @@
 // cypress/support/inventory.commands.js
 
-Cypress.Commands.add('getSortedProductNames', () => {
+Cypress.Commands.add('getProductNames', () => {
     let productNamesArr = []
 
     cy.get('div.inventory_item_name').each(($productNameEl) => {
@@ -11,7 +11,7 @@ Cypress.Commands.add('getSortedProductNames', () => {
     return cy.wrap(productNamesArr)
 })
 
-Cypress.Commands.add('getSortedProductPrices', () => {
+Cypress.Commands.add('getProductPrices', () => {
     let productPricesArr = []
 
     cy.get('div.inventory_item_price').each(($productPriceEl) => {

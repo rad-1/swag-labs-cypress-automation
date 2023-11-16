@@ -40,28 +40,28 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
         tags: '@inventorySorting'
     }, () => {
         it('by ascending', () => {
-            cy.getSortedProductNames().then(($initialSort) => {
-                const expectedSort = $initialSort.sort()
+            cy.getProductNames().then(($productNames) => {
+                const expectedSort = $productNames.sort()
 
                 cy.getBySel('product_sort_container').select('az')
 
                 cy.get('span.active_option')
                     .should('have.text', 'Name (A to Z)')
-                cy.getSortedProductNames().then(($newSort) => {
+                cy.getProductNames().then(($newSort) => {
                     expect($newSort).to.eql(expectedSort)
                 })
             })
         })
 
         it('by descending', () => {
-            cy.getSortedProductNames().then(($initialSort) => {
-                const expectedSort = $initialSort.sort().reverse()
+            cy.getProductNames().then(($productNames) => {
+                const expectedSort = $productNames.sort().reverse()
 
                 cy.getBySel('product_sort_container').select('za')
 
                 cy.get('span.active_option')
                     .should('have.text', 'Name (Z to A)')
-                cy.getSortedProductNames().then(($newSort) => {
+                cy.getProductNames().then(($newSort) => {
                     expect($newSort).to.eql(expectedSort)
                 })
             })
@@ -72,28 +72,28 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
         tags: '@inventorySorting'
     }, () => {
         it('by ascending', () => {
-            cy.getSortedProductPrices().then(($initialSort) => {
-                const expectedSort = $initialSort.sort((a, b) => (a - b))
+            cy.getProductPrices().then(($productPrices) => {
+                const expectedSort = $productPrices.sort((a, b) => (a - b))
 
                 cy.getBySel('product_sort_container').select('lohi')
 
                 cy.get('span.active_option')
                     .should('have.text', 'Price (low to high)')
-                cy.getSortedProductPrices().then(($newSort) => {
+                cy.getProductPrices().then(($newSort) => {
                     expect($newSort).to.eql(expectedSort)
                 })
             })
         })
 
         it('by descending', () => {
-            cy.getSortedProductPrices().then(($initialSort) => {
-                const expectedSort = $initialSort.sort((a, b) => (b - a))
+            cy.getProductPrices().then(($productPrices) => {
+                const expectedSort = $productPrices.sort((a, b) => (b - a))
 
                 cy.getBySel('product_sort_container').select('hilo')
 
                 cy.get('span.active_option')
                     .should('have.text', 'Price (high to low)')
-                cy.getSortedProductPrices().then(($newSort) => {
+                cy.getProductPrices().then(($newSort) => {
                     expect($newSort).to.eql(expectedSort)
                 })
             })

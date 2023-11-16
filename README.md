@@ -41,6 +41,7 @@ This project currently tests the following areas of the website:
 3. (Required) Install dependencies for the web application and Cypress tests
 
     ~~~ sh
+    $ cd swag-labs-cypress-automation
     $ npm i
     ~~~
 

@@ -39,8 +39,8 @@ module.exports = defineConfig({
     videoCompression: true,
     watchForFileChanges: true,
     retries: {
-        'openMode': 2,
-        'runMode': 0
+        'openMode': 0,
+        'runMode': 2
     },
     pageLoadTimeout: 30000
 })

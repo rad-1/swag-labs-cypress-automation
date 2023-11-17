@@ -25,6 +25,7 @@ Cypress.Commands.add('getProductPrices', () => {
 })
 
 Cypress.Commands.add('getRemoveBtnCount', () => {
+    // expect num items in cart to match this returned length
     cy.getBySelLike('remove-').then(($removeBtn) => {
         return $removeBtn.length
     })

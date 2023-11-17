@@ -4,6 +4,7 @@
     "cypress": "^13.5.0",
     "eslint": "^8.53.0",
     "eslint-plugin-cypress": "^2.15.1",
+    "husky": "^8.0.3",
     "mochawesome": "^7.1.3"
   },
   "scripts": {
@@ -11,6 +12,7 @@
     "cy:run": "cypress run",
     "cy:tagged": "cypress run --env grepTags=$npm_config_tags,grepFilterSpecs=true,grepOmitFiltered=true",
     "lint": "eslint . --ext .js,.jsx",
-    "lint:fix": "eslint . --fix --ext .js,.jsx"
+    "lint:fix": "eslint . --fix --ext .js,.jsx",
+    "prepare": "husky install"
   }
 }

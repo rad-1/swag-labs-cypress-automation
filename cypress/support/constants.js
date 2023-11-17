@@ -25,6 +25,7 @@ export const INVENTORY_PAGE = {
     TITLE_TXT: 'Products',
     ADD_PRODUCT_TXT: 'Add to cart',
     REMOVE_PRODUCT_TXT: 'Remove',
+
     PRODUCTS: [
         {
             NAME: 'Sauce Labs Backpack',

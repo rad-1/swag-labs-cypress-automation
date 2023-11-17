@@ -1,6 +1,6 @@
 // cypress/support/constants.js
 
-export const NAVIGATION = {
+export const HAMBURGER_NAV = {
     ALL_ITEMS: {
         HREF: '#',
         HREF_TXT: 'All Items'

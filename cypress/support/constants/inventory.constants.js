@@ -1,7 +1,10 @@
 // cypress/support/constants/inventory.constants.js
 
 const INVENTORY_LAYOUT = {
-    TITLE: 'Products'
+    APP_LOGO: 'Swag Labs',
+    TITLE: 'Products',
+    ADD_PRODUCT_TXT: 'Add to cart',
+    REMOVE_PRODUCT_TXT: 'Remove',
 }
 
 const INVENTORY_PRODUCTS = [

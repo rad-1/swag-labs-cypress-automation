@@ -4,6 +4,10 @@ Cypress.Commands.add('getBySel', (selector) => {
     return cy.get(`[data-test=${selector}]`)
 })
 
+Cypress.Commands.add('getBySelLike', (selector) => {
+    return cy.get(`[data-test*=${selector}]`)
+})
+
 Cypress.Commands.add('loginViaUi', (username, password) => {
     cy.visit('/', {
         // https://github.com/cypress-io/cypress/issues/27501

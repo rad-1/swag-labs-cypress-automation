@@ -26,6 +26,6 @@ Cypress.Commands.add('getProductPrices', () => {
 
 Cypress.Commands.add('getRemoveBtnCount', () => {
     cy.getBySelLike('remove-').then(($removeBtn) => {
-        return $removeBtn.length.toString()
+        return $removeBtn.length
     })
 })

@@ -1,11 +1,6 @@
 // cypress/e2e/login.cy.js
 
-import {
-    LOGIN_LAYOUT,
-    LOGIN_CREDENTIALS,
-    LOGIN_ERRORS
-} from '../support/constants/login.constants'
-import { INVENTORY_LAYOUT } from '../support/constants/inventory.constants'
+import { LOGIN_PAGE, INVENTORY_PAGE } from '../support/constants'
 
 describe('login page', { tags: ['@login', '@smoke'] }, () => {
     beforeEach(() => {
@@ -16,7 +11,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
         it('title is visible', () => {
             cy.get('.login_logo')
                 .should('be.visible')
-                .and('have.text', LOGIN_LAYOUT.TITLE)
+                .and('have.text', LOGIN_PAGE.TITLE_TXT)
         })
     })
 
@@ -25,67 +20,67 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
             tags: '@loginPositive'
         }, () => {
             cy.login(
-                LOGIN_CREDENTIALS.VALID_USERNAME,
-                LOGIN_CREDENTIALS.VALID_PASSWORD
+                LOGIN_PAGE.CREDENTIALS.VALID_USERNAME,
+                LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD
             )
 
             cy.get('.title')
                 .should('be.visible')
-                .and('have.text', INVENTORY_LAYOUT.TITLE)
+                .and('have.text', INVENTORY_PAGE.TITLE_TXT)
         })
 
         context('unsuccessful login with', { tags: '@loginNegative' }, () => {
             it('invalid username', () => {
                 cy.login(
-                    LOGIN_CREDENTIALS.INVALID_USERNAME,
-                    LOGIN_CREDENTIALS.VALID_PASSWORD
+                    LOGIN_PAGE.CREDENTIALS.INVALID_USERNAME,
+                    LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD
                 )
 
                 cy.getBySel('error')
                     .should('be.visible')
-                    .and('have.text', LOGIN_ERRORS.NO_MATCH)
+                    .and('have.text', LOGIN_PAGE.ERRORS.NO_MATCH)
             })
 
             it('invalid password', () => {
                 cy.login(
-                    LOGIN_CREDENTIALS.VALID_USERNAME,
-                    LOGIN_CREDENTIALS.INVALID_PASSWORD
+                    LOGIN_PAGE.CREDENTIALS.VALID_USERNAME,
+                    LOGIN_PAGE.CREDENTIALS.INVALID_PASSWORD
                 )
 
                 cy.getBySel('error')
                     .should('be.visible')
-                    .and('have.text', LOGIN_ERRORS.NO_MATCH)
+                    .and('have.text', LOGIN_PAGE.ERRORS.NO_MATCH)
             })
 
             it('invalid username and password', () => {
                 cy.login(
-                    LOGIN_CREDENTIALS.INVALID_USERNAME,
-                    LOGIN_CREDENTIALS.INVALID_PASSWORD
+                    LOGIN_PAGE.CREDENTIALS.INVALID_USERNAME,
+                    LOGIN_PAGE.CREDENTIALS.INVALID_PASSWORD
                 )
 
                 cy.getBySel('error')
                     .should('be.visible')
-                    .and('have.text', LOGIN_ERRORS.NO_MATCH)
+                    .and('have.text', LOGIN_PAGE.ERRORS.NO_MATCH)
             })
 
             it('empty username field', () => {
                 cy.getBySel('username').clear()
-                cy.getBySel('password').type(LOGIN_CREDENTIALS.VALID_PASSWORD)
+                cy.getBySel('password').type(LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD)
                 cy.getBySel('login-button').click()
 
                 cy.getBySel('error')
                     .should('be.visible')
-                    .and('have.text', LOGIN_ERRORS.USERNAME_REQUIRED)
+                    .and('have.text', LOGIN_PAGE.ERRORS.USERNAME_REQUIRED)
             })
 
             it('empty password field', () => {
                 cy.getBySel('password').clear()
-                cy.getBySel('username').type(LOGIN_CREDENTIALS.VALID_USERNAME)
+                cy.getBySel('username').type(LOGIN_PAGE.CREDENTIALS.VALID_USERNAME)
                 cy.getBySel('login-button').click()
 
                 cy.getBySel('error')
                     .should('be.visible')
-                    .and('have.text', LOGIN_ERRORS.PASSWORD_REQUIRED)
+                    .and('have.text', LOGIN_PAGE.ERRORS.PASSWORD_REQUIRED)
             })
 
             it('empty username and password fields', () => {
@@ -95,18 +90,18 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
 
                 cy.getBySel('error')
                     .should('be.visible')
-                    .and('have.text', LOGIN_ERRORS.USERNAME_REQUIRED)
+                    .and('have.text', LOGIN_PAGE.ERRORS.USERNAME_REQUIRED)
             })
 
             it('locked out username', () => {
                 cy.login(
-                    LOGIN_CREDENTIALS.LOCKED_OUT_USERNAME,
-                    LOGIN_CREDENTIALS.VALID_PASSWORD
+                    LOGIN_PAGE.CREDENTIALS.LOCKED_OUT_USERNAME,
+                    LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD
                 )
 
                 cy.getBySel('error')
                     .should('be.visible')
-                    .and('have.text', LOGIN_ERRORS.LOCKED_OUT)
+                    .and('have.text', LOGIN_PAGE.ERRORS.LOCKED_OUT)
             })
         })
     })

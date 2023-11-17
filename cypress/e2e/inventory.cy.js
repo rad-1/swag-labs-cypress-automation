@@ -1,9 +1,6 @@
 // cypress/e2e/inventory.cy.js
 
-import {
-    INVENTORY_LAYOUT,
-    INVENTORY_PRODUCTS
-} from '../support/constants/inventory.constants'
+import { INVENTORY_PAGE } from '../support/constants'
 
 describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
     beforeEach(() => {
@@ -14,13 +11,13 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
         it('app logo is visible', () => {
             cy.get('div.app_logo')
                 .should('be.visible')
-                .and('have.text', INVENTORY_LAYOUT.APP_LOGO)
+                .and('have.text', INVENTORY_PAGE.APP_LOGO_TXT)
         })
 
         it('title is visible', () => {
             cy.get('span.title')
                 .should('be.visible')
-                .and('have.text', INVENTORY_LAYOUT.TITLE)
+                .and('have.text', INVENTORY_PAGE.TITLE_TXT)
         })
 
         it('six products are visible', () => {
@@ -30,7 +27,7 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
         })
 
         it('product names and prices are visible', () => {
-            INVENTORY_PRODUCTS.forEach((product, index) => {
+            INVENTORY_PAGE.PRODUCTS.forEach((product, index) => {
                 cy.get('div.inventory_item')
                     .eq(index)
                     .within(() => {
@@ -112,11 +109,11 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
 
                 cy.getBySel('remove-sauce-labs-backpack')
                     .should('be.visible')
-                    .and('have.text', INVENTORY_LAYOUT.REMOVE_PRODUCT_TXT)
+                    .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
 
                 cy.getRemoveBtnCount().then(($expectedProductCount) => {
                     cy.get('span.shopping_cart_badge')
-                        .should('have.text', $expectedProductCount)
+                        .should('have.text', `${$expectedProductCount}`)
                 })
             })
 
@@ -127,17 +124,17 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
 
                 cy.getBySel('remove-sauce-labs-bolt-t-shirt')
                     .should('be.visible')
-                    .and('have.text', INVENTORY_LAYOUT.REMOVE_PRODUCT_TXT)
+                    .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
                 cy.getBySel('remove-sauce-labs-fleece-jacket')
                     .should('be.visible')
-                    .and('have.text', INVENTORY_LAYOUT.REMOVE_PRODUCT_TXT)
+                    .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
                 cy.getBySel('remove-sauce-labs-onesie')
                     .should('be.visible')
-                    .and('have.text', INVENTORY_LAYOUT.REMOVE_PRODUCT_TXT)
+                    .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
 
                 cy.getRemoveBtnCount().then(($expectedProductCount) => {
                     cy.get('span.shopping_cart_badge')
-                        .should('have.text', $expectedProductCount)
+                        .should('have.text', `${$expectedProductCount}`)
                 })
             })
         })
@@ -154,11 +151,11 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
 
                 cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt')
                     .should('be.visible')
-                    .and('have.text', INVENTORY_LAYOUT.ADD_PRODUCT_TXT)
+                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
 
                 cy.getRemoveBtnCount().then(($expectedProductCount) => {
                     cy.get('span.shopping_cart_badge')
-                        .should('have.text', $expectedProductCount)
+                        .should('have.text', `${$expectedProductCount}`)
                 })
             })
 
@@ -168,14 +165,14 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
 
                 cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt')
                     .should('be.visible')
-                    .and('have.text', INVENTORY_LAYOUT.ADD_PRODUCT_TXT)
+                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
                 cy.getBySel('add-to-cart-sauce-labs-fleece-jacket')
                     .should('be.visible')
-                    .and('have.text', INVENTORY_LAYOUT.ADD_PRODUCT_TXT)
+                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
 
                 cy.getRemoveBtnCount().then(($expectedProductCount) => {
                     cy.get('span.shopping_cart_badge')
-                        .should('have.text', $expectedProductCount)
+                        .should('have.text', `${$expectedProductCount}`)
                 })
             })
 
@@ -186,13 +183,13 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
 
                 cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt')
                     .should('be.visible')
-                    .and('have.text', INVENTORY_LAYOUT.ADD_PRODUCT_TXT)
+                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
                 cy.getBySel('add-to-cart-sauce-labs-fleece-jacket')
                     .should('be.visible')
-                    .and('have.text', INVENTORY_LAYOUT.ADD_PRODUCT_TXT)
+                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
                 cy.getBySel('add-to-cart-sauce-labs-onesie')
                     .should('be.visible')
-                    .and('have.text', INVENTORY_LAYOUT.ADD_PRODUCT_TXT)
+                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
 
                 cy.get('span.shopping_cart_badge').should('not.exist')
             })

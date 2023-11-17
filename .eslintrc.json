@@ -20,7 +20,7 @@
         "no-trailing-spaces": "error",
         "max-len": [
             "error",
-            80
+            100
         ]
     },
     "ignorePatterns": ["mochawesome-report"]

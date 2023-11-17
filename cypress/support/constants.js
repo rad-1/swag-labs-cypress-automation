@@ -3,19 +3,19 @@
 export const NAVIGATION = {
     ALL_ITEMS: {
         HREF: '#',
-        LINK_TXT: 'All Items'
+        HREF_TXT: 'All Items'
     },
     ABOUT: {
         HREF: 'https://saucelabs.com/',
-        LINK_TXT: 'About'
+        HREF_TXT: 'About'
     },
     LOGOUT: {
         HREF: '#',
-        LINK_TXT: 'Logout'
+        HREF_TXT: 'Logout'
     },
     RESET_APP_STATE: {
         HREF: '#',
-        LINK_TXT: 'Reset App State'
+        HREF_TXT: 'Reset App State'
     },
 }
 

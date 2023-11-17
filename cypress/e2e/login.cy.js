@@ -1,6 +1,9 @@
 // cypress/e2e/login.cy.js
 
-import { LOGIN_PAGE, INVENTORY_PAGE } from '../support/constants'
+import {
+    LOGIN_PAGE,
+    INVENTORY_PAGE,
+} from '../support/constants'
 
 describe('login page', { tags: ['@login', '@smoke'] }, () => {
     beforeEach(() => {
@@ -8,10 +11,10 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
     })
 
     context('user can view page', { tags: '@loginSanity' }, () => {
-        it('title is visible', () => {
+        it('login logo is visible', () => {
             cy.get('.login_logo')
                 .should('be.visible')
-                .and('have.text', LOGIN_PAGE.TITLE_TXT)
+                .and('have.text', LOGIN_PAGE.LOGIN_LOGO_TXT)
         })
     })
 

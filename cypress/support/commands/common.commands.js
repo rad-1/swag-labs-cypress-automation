@@ -1,5 +1,7 @@
 // cypress/support/commmon.commands.js
 
+import { INVENTORY_PAGE } from '../constants'
+
 Cypress.Commands.add('getBySel', (selector) => {
     return cy.get(`[data-test=${selector}]`)
 })
@@ -21,5 +23,5 @@ Cypress.Commands.add('loginViaUi', (username, password) => {
         password || Cypress.env('password')
     )
 
-    cy.url().should('contain', '/inventory.html')
+    cy.contains(INVENTORY_PAGE.TITLE_TXT)
 })

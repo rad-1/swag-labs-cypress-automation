@@ -1,6 +1,9 @@
 // cypress/e2e/inventory.cy.js
 
-import { INVENTORY_PAGE } from '../support/constants'
+import {
+    INVENTORY_PAGE,
+    CART_PAGE
+} from '../support/constants'
 
 describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
     beforeEach(() => {
@@ -193,6 +196,14 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
 
                 cy.get('span.shopping_cart_badge').should('not.exist')
             })
+        })
+    })
+
+    context('user navigation', { tags: '@inventorySanity' }, () => {
+        it('navigate to cart page from cart link', () => {
+            cy.get('a.shopping_cart_link').click()
+
+            cy.get('span.title').should('have.text', CART_PAGE.TITLE_TXT)
         })
     })
 })

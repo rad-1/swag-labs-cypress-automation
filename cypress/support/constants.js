@@ -1,7 +1,26 @@
 // cypress/support/constants.js
 
+export const NAVIGATION = {
+    ALL_ITEMS: {
+        HREF: '#',
+        LINK_TXT: 'All Items'
+    },
+    ABOUT: {
+        HREF: 'https://saucelabs.com/',
+        LINK_TXT: 'About'
+    },
+    LOGOUT: {
+        HREF: '#',
+        LINK_TXT: 'Logout'
+    },
+    RESET_APP_STATE: {
+        HREF: '#',
+        LINK_TXT: 'Reset App State'
+    },
+}
+
 export const LOGIN_PAGE = {
-    TITLE_TXT: 'Swag Labs',
+    LOGIN_LOGO_TXT: 'Swag Labs',
 
     CREDENTIALS: {
         VALID_USERNAME: Cypress.env('username'),
@@ -52,4 +71,9 @@ export const INVENTORY_PAGE = {
             PRICE: '$15.99'
         },
     ]
+}
+
+export const CART_PAGE = {
+    APP_LOGO_TXT: 'Swag Labs',
+    TITLE_TXT: 'Your Cart',
 }

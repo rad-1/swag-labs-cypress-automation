@@ -27,7 +27,7 @@ This project currently tests the following areas of the website:
 * Inventory: Product and price validation, and product sorting by name and price
 * Cart: (coming soon...)
 * Checkout: (coming soon...)
-* Navigation: (coming soon...)
+* Navigation: Verify hamburger menu links
 
 ## Getting Started
 1. (Required) Clone the repository and switch to it via terminal

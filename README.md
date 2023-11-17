@@ -1,6 +1,8 @@
 # 🛠 Swag Labs - Cypress Automation 🛠
 This repo contains an automated testing project for the Swag Labs demo [website](https://www.saucedemo.com) and serves as a playground to try out both new and existing features of the Cypress E2E testing framework. Cypress tests are currently written in JavaScript.
 
+One thing to note about this project. While it would have been very easy to use POM, I decided against it after reading about increased test execution times for Cypress frameworks that follow traditional POM principles versus those that do not.
+
 ## Table of Contents
 - [Requirements](#requirements)
 - [Recommended Tools](#recommended-tools)

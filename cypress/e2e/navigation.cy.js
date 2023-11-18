@@ -2,7 +2,7 @@
 
 import { HAMBURGER_NAV } from '../support/constants'
 
-describe('user navigation via hamburger menu', {tags: ['@navigation', '@smoke']}, () => {
+describe('user navigation via hamburger menu', { tags: ['@navigation', '@smoke'] }, () => {
     context('authenticated user can access', () => {
         beforeEach(() => {
             cy.loginViaUi()

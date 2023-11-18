@@ -18,7 +18,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
         })
     })
 
-    context('user attempts login', () => {
+    context('user login', () => {
         it('successful login with valid username and password', {
             tags: '@loginPositive'
         }, () => {

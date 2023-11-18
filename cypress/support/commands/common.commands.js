@@ -11,6 +11,9 @@ Cypress.Commands.add('getBySelLike', (selector) => {
 })
 
 Cypress.Commands.add('loginViaUi', (username, password) => {
+    const user = username || Cypress.env('username')
+    const pass = password || Cypress.env('password')
+
     cy.visit('/', {
         // https://github.com/cypress-io/cypress/issues/27501
         onBeforeLoad(win) {
@@ -19,8 +22,8 @@ Cypress.Commands.add('loginViaUi', (username, password) => {
     })
 
     cy.login(
-        username || Cypress.env('username'),
-        password || Cypress.env('password')
+        user,
+        pass
     )
 
     cy.contains(INVENTORY_PAGE.TITLE_TXT)

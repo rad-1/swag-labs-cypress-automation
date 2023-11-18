@@ -1,7 +1,7 @@
 // cypress/support/inventory.commands.js
 
 Cypress.Commands.add('getProductNames', () => {
-    let productNamesArr = []
+    const productNamesArr = []
 
     cy.get('div.inventory_item_name').each(($productNameEl) => {
         const productNameText = $productNameEl.text()
@@ -12,7 +12,7 @@ Cypress.Commands.add('getProductNames', () => {
 })
 
 Cypress.Commands.add('getProductPrices', () => {
-    let productPricesArr = []
+    const productPricesArr = []
 
     cy.get('div.inventory_item_price').each(($productPriceEl) => {
         const productPriceText = $productPriceEl.text()

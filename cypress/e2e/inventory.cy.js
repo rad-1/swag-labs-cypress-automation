@@ -48,57 +48,84 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
     context('user can sort products', {
         tags: '@inventorySorting'
     }, () => {
+        const getProductNames = () => {
+            const productNamesArr = []
+
+            cy.get('div.inventory_item_name').each(($productNameEl) => {
+                const productNameText = $productNameEl.text()
+                productNamesArr.push(productNameText)
+            })
+
+            return cy.wrap(productNamesArr)
+        }
+
+        const getProductPrices = () => {
+            const productPricesArr = []
+
+            cy.get('div.inventory_item_price').each(($productPriceEl) => {
+                const productPriceText = $productPriceEl.text()
+                const productPriceValue = parseFloat(productPriceText.replace('$', ''))
+                productPricesArr.push(productPriceValue)
+            })
+
+            return cy.wrap(productPricesArr)
+        }
+
         it('ascending by name', () => {
-            cy.getProductNames().then(($productNames) => {
+            getProductNames().then(($productNames) => {
                 const expectedSort = $productNames.sort()
 
                 cy.getBySel('product_sort_container').select('az')
 
                 cy.get('span.active_option')
                     .should('have.text', 'Name (A to Z)')
-                cy.getProductNames().then(($newSort) => {
+
+                getProductNames().then(($newSort) => {
                     expect($newSort).to.eql(expectedSort)
                 })
             })
         })
 
         it('descending by name', () => {
-            cy.getProductNames().then(($productNames) => {
+            getProductNames().then(($productNames) => {
                 const expectedSort = $productNames.sort().reverse()
 
                 cy.getBySel('product_sort_container').select('za')
 
                 cy.get('span.active_option')
                     .should('have.text', 'Name (Z to A)')
-                cy.getProductNames().then(($newSort) => {
+
+                getProductNames().then(($newSort) => {
                     expect($newSort).to.eql(expectedSort)
                 })
             })
         })
 
         it('ascending by price', () => {
-            cy.getProductPrices().then(($productPrices) => {
+            getProductPrices().then(($productPrices) => {
                 const expectedSort = $productPrices.sort((a, b) => (a - b))
 
                 cy.getBySel('product_sort_container').select('lohi')
 
                 cy.get('span.active_option')
                     .should('have.text', 'Price (low to high)')
-                cy.getProductPrices().then(($newSort) => {
+
+                getProductPrices().then(($newSort) => {
                     expect($newSort).to.eql(expectedSort)
                 })
             })
         })
 
         it('descending by price', () => {
-            cy.getProductPrices().then(($productPrices) => {
+            getProductPrices().then(($productPrices) => {
                 const expectedSort = $productPrices.sort((a, b) => (b - a))
 
                 cy.getBySel('product_sort_container').select('hilo')
 
                 cy.get('span.active_option')
                     .should('have.text', 'Price (high to low)')
-                cy.getProductPrices().then(($newSort) => {
+
+                getProductPrices().then(($newSort) => {
                     expect($newSort).to.eql(expectedSort)
                 })
             })
@@ -106,96 +133,108 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
     })
 
     context('user can interact with products', () => {
-        context('add products to cart', () => {
-            it('add single product to cart', () => {
-                cy.getBySel('add-to-cart-sauce-labs-backpack').click()
-
-                cy.getBySel('remove-sauce-labs-backpack')
-                    .should('be.visible')
-                    .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
-
-                cy.getRemoveBtnCount().then(($expectedProductCount) => {
-                    cy.get('span.shopping_cart_badge')
-                        .should('have.text', `${$expectedProductCount}`)
-                })
+        const getRemoveBtnCount = () => {
+            return cy.getBySelLike('remove-').then(($removeBtn) => {
+                return $removeBtn.length
             })
+        }
 
-            it('add multiple products to cart', () => {
-                cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt').click()
-                cy.getBySel('add-to-cart-sauce-labs-fleece-jacket').click()
-                cy.getBySel('add-to-cart-sauce-labs-onesie').click()
+        const addProductsToCart = () => {
+            cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt').click()
+            cy.getBySel('add-to-cart-sauce-labs-fleece-jacket').click()
+            cy.getBySel('add-to-cart-sauce-labs-onesie').click()
 
-                cy.getBySel('remove-sauce-labs-bolt-t-shirt')
-                    .should('be.visible')
-                    .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
-                cy.getBySel('remove-sauce-labs-fleece-jacket')
-                    .should('be.visible')
-                    .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
-                cy.getBySel('remove-sauce-labs-onesie')
-                    .should('be.visible')
-                    .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
+            getRemoveBtnCount().then(($expectedProductCount) => {
+                cy.get('span.shopping_cart_badge')
+                    .should('have.text', `${$expectedProductCount}`)
+            })
+        }
 
-                cy.getRemoveBtnCount().then(($expectedProductCount) => {
-                    cy.get('span.shopping_cart_badge')
-                        .should('have.text', `${$expectedProductCount}`)
-                })
+        it('add single product to cart', () => {
+            cy.getBySel('add-to-cart-sauce-labs-backpack').click()
+
+            cy.getBySel('remove-sauce-labs-backpack')
+                .should('be.visible')
+                .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
+
+            getRemoveBtnCount().then(($expectedProductCount) => {
+                cy.get('span.shopping_cart_badge')
+                    .should('have.text', `${$expectedProductCount}`)
             })
         })
 
-        context('remove products from cart', () => {
-            beforeEach(() => {
-                cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt').click()
-                cy.getBySel('add-to-cart-sauce-labs-fleece-jacket').click()
-                cy.getBySel('add-to-cart-sauce-labs-onesie').click()
+        it('add multiple products to cart', () => {
+            cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt').click()
+            cy.getBySel('add-to-cart-sauce-labs-fleece-jacket').click()
+            cy.getBySel('add-to-cart-sauce-labs-onesie').click()
+
+            cy.getBySel('remove-sauce-labs-bolt-t-shirt')
+                .should('be.visible')
+                .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
+            cy.getBySel('remove-sauce-labs-fleece-jacket')
+                .should('be.visible')
+                .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
+            cy.getBySel('remove-sauce-labs-onesie')
+                .should('be.visible')
+                .and('have.text', INVENTORY_PAGE.REMOVE_PRODUCT_TXT)
+
+            getRemoveBtnCount().then(($expectedProductCount) => {
+                cy.get('span.shopping_cart_badge')
+                    .should('have.text', `${$expectedProductCount}`)
             })
+        })
 
-            it('remove single product from cart', () => {
-                cy.getBySel('remove-sauce-labs-bolt-t-shirt').click()
+        it('remove single product from cart', () => {
+            addProductsToCart()
 
-                cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt')
-                    .should('be.visible')
-                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
+            cy.getBySel('remove-sauce-labs-bolt-t-shirt').click()
 
-                cy.getRemoveBtnCount().then(($expectedProductCount) => {
-                    cy.get('span.shopping_cart_badge')
-                        .should('have.text', `${$expectedProductCount}`)
-                })
+            cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt')
+                .should('be.visible')
+                .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
+
+            getRemoveBtnCount().then(($expectedProductCount) => {
+                cy.get('span.shopping_cart_badge')
+                    .should('have.text', `${$expectedProductCount}`)
             })
+        })
 
-            it('remove multiple products from cart', () => {
-                cy.getBySel('remove-sauce-labs-bolt-t-shirt').click()
-                cy.getBySel('remove-sauce-labs-fleece-jacket').click()
+        it('remove multiple products from cart', () => {
+            addProductsToCart()
 
-                cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt')
-                    .should('be.visible')
-                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
-                cy.getBySel('add-to-cart-sauce-labs-fleece-jacket')
-                    .should('be.visible')
-                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
+            cy.getBySel('remove-sauce-labs-bolt-t-shirt').click()
+            cy.getBySel('remove-sauce-labs-fleece-jacket').click()
 
-                cy.getRemoveBtnCount().then(($expectedProductCount) => {
-                    cy.get('span.shopping_cart_badge')
-                        .should('have.text', `${$expectedProductCount}`)
-                })
+            cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt')
+                .should('be.visible')
+                .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
+            cy.getBySel('add-to-cart-sauce-labs-fleece-jacket')
+                .should('be.visible')
+                .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
+
+            getRemoveBtnCount().then(($expectedProductCount) => {
+                cy.get('span.shopping_cart_badge')
+                    .should('have.text', `${$expectedProductCount}`)
             })
+        })
 
-            it('remove all products from cart', () => {
-                cy.getBySel('remove-sauce-labs-bolt-t-shirt').click()
-                cy.getBySel('remove-sauce-labs-fleece-jacket').click()
-                cy.getBySel('remove-sauce-labs-onesie').click()
+        it('remove all products from cart', () => {
+            addProductsToCart()
+            cy.getBySel('remove-sauce-labs-bolt-t-shirt').click()
+            cy.getBySel('remove-sauce-labs-fleece-jacket').click()
+            cy.getBySel('remove-sauce-labs-onesie').click()
 
-                cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt')
-                    .should('be.visible')
-                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
-                cy.getBySel('add-to-cart-sauce-labs-fleece-jacket')
-                    .should('be.visible')
-                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
-                cy.getBySel('add-to-cart-sauce-labs-onesie')
-                    .should('be.visible')
-                    .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
+            cy.getBySel('add-to-cart-sauce-labs-bolt-t-shirt')
+                .should('be.visible')
+                .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
+            cy.getBySel('add-to-cart-sauce-labs-fleece-jacket')
+                .should('be.visible')
+                .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
+            cy.getBySel('add-to-cart-sauce-labs-onesie')
+                .should('be.visible')
+                .and('have.text', INVENTORY_PAGE.ADD_PRODUCT_TXT)
 
-                cy.get('span.shopping_cart_badge').should('not.exist')
-            })
+            cy.get('span.shopping_cart_badge').should('not.exist')
         })
     })
 

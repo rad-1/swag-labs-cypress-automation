@@ -22,10 +22,9 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
         it('successful login with valid username and password', {
             tags: '@loginPositive'
         }, () => {
-            cy.login(
-                LOGIN_PAGE.CREDENTIALS.VALID_USERNAME,
-                LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD
-            )
+            cy.getBySel('username').type(LOGIN_PAGE.CREDENTIALS.VALID_USERNAME)
+            cy.getBySel('password').type(LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD, {log: false})
+            cy.getBySel('login-button').click()
 
             cy.get('.title')
                 .should('be.visible')
@@ -33,8 +32,14 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
         })
 
         context('unsuccessful login with', { tags: '@loginNegative' }, () => {
+            const login = (username, password) => {
+                cy.getBySel('username').type(username)
+                cy.getBySel('password').type(password, {log: false})
+                cy.getBySel('login-button').click()
+            }
+
             it('invalid username', () => {
-                cy.login(
+                login(
                     LOGIN_PAGE.CREDENTIALS.INVALID_USERNAME,
                     LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD
                 )
@@ -45,7 +50,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
             })
 
             it('invalid password', () => {
-                cy.login(
+                login(
                     LOGIN_PAGE.CREDENTIALS.VALID_USERNAME,
                     LOGIN_PAGE.CREDENTIALS.INVALID_PASSWORD
                 )
@@ -56,7 +61,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
             })
 
             it('invalid username and password', () => {
-                cy.login(
+                login(
                     LOGIN_PAGE.CREDENTIALS.INVALID_USERNAME,
                     LOGIN_PAGE.CREDENTIALS.INVALID_PASSWORD
                 )
@@ -97,7 +102,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
             })
 
             it('locked out username', () => {
-                cy.login(
+                login(
                     LOGIN_PAGE.CREDENTIALS.LOCKED_OUT_USERNAME,
                     LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD
                 )

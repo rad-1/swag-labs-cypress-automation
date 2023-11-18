@@ -220,6 +220,7 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
 
         it('remove all products from cart', () => {
             addProductsToCart()
+
             cy.getBySel('remove-sauce-labs-bolt-t-shirt').click()
             cy.getBySel('remove-sauce-labs-fleece-jacket').click()
             cy.getBySel('remove-sauce-labs-onesie').click()

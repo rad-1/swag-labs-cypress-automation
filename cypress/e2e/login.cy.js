@@ -68,7 +68,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
 
             it('empty username field', () => {
                 cy.getBySel('username').clear()
-                cy.getBySel('password').type(LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD)
+                cy.getBySel('password').type(LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD, {log: false})
                 cy.getBySel('login-button').click()
 
                 cy.getBySel('error')

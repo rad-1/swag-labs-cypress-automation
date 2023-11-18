@@ -1,4 +1,12 @@
 {
+  "name": "swag-labs-cypress-automation",
+  "version": "1.0.0",
+  "author": "Joshua Tipton <jctipton123@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rad-1/swag-labs-cypress-automation.git"
+  },
+  "license": "MIT",
   "devDependencies": {
     "@cypress/grep": "^4.0.1",
     "cypress": "^13.5.0",

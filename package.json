@@ -10,7 +10,7 @@
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "cy:tagged": "cypress run --env grepTags=$npm_config_tags,grepFilterSpecs=true,grepOmitFiltered=true",
+    "cy:tagged": "cypress run --env grepTags=\"$npm_config_tags\",grepFilterSpecs=true,grepOmitFiltered=true",
     "lint": "eslint . --ext .js,.jsx",
     "lint:fix": "eslint . --fix --ext .js,.jsx"
   }

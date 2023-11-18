@@ -45,9 +45,7 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
         })
     })
 
-    context('user can sort products', {
-        tags: '@inventorySorting'
-    }, () => {
+    context('user can sort products', { tags: '@inventorySorting' }, () => {
         const getProductNames = () => {
             const productNamesArr = []
 
@@ -132,7 +130,7 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
         })
     })
 
-    context('user can interact with products', () => {
+    context('user can add and remove products', { tags: '@addAndRemoveInventory' }, () => {
         const getRemoveBtnCount = () => {
             return cy.getBySelLike('remove-').then(($removeBtn) => {
                 return $removeBtn.length

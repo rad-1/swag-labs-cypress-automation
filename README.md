@@ -62,12 +62,14 @@ This project currently tests the following areas of the website:
     ~~~
 
 ## Included Scripts
-1. To run tests with specific tags, the value of `tags` can be replaced with tags found in each test file\
+1. To run tests with specific tags where the value of the `--tags` arg in the script can be replaced with tags found in each test file or individual test\
 \
-For example, `@smoke` and `@login` are test tags that can be found in the `cypress/e2e/login.cy.js` test file
+For example, `@smoke`, `@inventory`, and `@navigation` are test tags that can be found in the `e2e` test files.
 
     ~~~ sh
-    $ npm run cy:tagged --tags=@smoke
+    $ npm run cy:tagged --tags='@smoke' # Run test file or specific tests that contain the @smoke tag
+    # OR
+    $ npm run cy:tagged --tags='@inventory @navigation' # Run test file or specific tests that contain either of the  @inventory or @navigation tags
     ~~~
 
 3. To lint your code

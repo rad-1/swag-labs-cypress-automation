@@ -26,7 +26,7 @@ Cypress.Commands.add('loginViaUi', (username, password) => {
             delete win.navigator.__proto__.serviceWorker
         }
     })
-    cy.submitLoginForm(user,pass)
+    cy.submitLoginForm(user, pass)
 
     cy.contains(INVENTORY_PAGE.TITLE_TXT).should('be.visible')
 })

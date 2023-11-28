@@ -11,8 +11,8 @@ Cypress.Commands.add('getBySelLike', (selector) => {
 })
 
 Cypress.Commands.add('loginViaUi', (username, password) => {
-    const user = username || LOGIN_PAGE.CREDENTIALS.VALID_USERNAME
-    const pass = password || LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD
+    const user = username || Cypress.env('username')
+    const pass = password || Cypress.env('password')
 
     cy.visit('/', {
         // https://github.com/cypress-io/cypress/issues/27501

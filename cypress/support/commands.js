@@ -10,12 +10,6 @@ Cypress.Commands.add('getBySelLike', (selector) => {
     cy.get(`[data-test*=${selector}]`)
 })
 
-Cypress.Commands.add('submitLoginForm', (username, password) => {
-    cy.getBySel('username').type(username)
-    cy.getBySel('password').type(password, {log: false})
-    cy.getBySel('login-button').click()
-})
-
 Cypress.Commands.add('loginViaUi', (username, password) => {
     const user = username || LOGIN_PAGE.CREDENTIALS.VALID_USERNAME
     const pass = password || LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD
@@ -26,7 +20,9 @@ Cypress.Commands.add('loginViaUi', (username, password) => {
             delete win.navigator.__proto__.serviceWorker
         }
     })
-    cy.submitLoginForm(user, pass)
+    cy.getBySel('username').type(user)
+    cy.getBySel('password').type(pass, {log: false})
+    cy.getBySel('login-button').click()
 
     cy.contains(INVENTORY_PAGE.TITLE_TXT).should('be.visible')
 })

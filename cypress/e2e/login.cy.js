@@ -19,10 +19,16 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
     })
 
     context('user login', () => {
+        const submitLoginForm = (username, password) => {
+            cy.getBySel('username').type(username)
+            cy.getBySel('password').type(password, {log: false})
+            cy.getBySel('login-button').click()
+        }
+
         it('successful login with valid username and password', {
             tags: '@loginPositive'
         }, () => {
-            cy.submitLoginForm(
+            submitLoginForm(
                 LOGIN_PAGE.CREDENTIALS.VALID_USERNAME,
                 LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD
             )
@@ -34,7 +40,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
 
         context('unsuccessful login with', { tags: '@loginNegative' }, () => {
             it('invalid username', () => {
-                cy.submitLoginForm(
+                submitLoginForm(
                     LOGIN_PAGE.CREDENTIALS.INVALID_USERNAME,
                     LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD
                 )
@@ -45,7 +51,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
             })
 
             it('invalid password', () => {
-                cy.submitLoginForm(
+                submitLoginForm(
                     LOGIN_PAGE.CREDENTIALS.VALID_USERNAME,
                     LOGIN_PAGE.CREDENTIALS.INVALID_PASSWORD
                 )
@@ -56,7 +62,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
             })
 
             it('invalid username and password', () => {
-                cy.submitLoginForm(
+                submitLoginForm(
                     LOGIN_PAGE.CREDENTIALS.INVALID_USERNAME,
                     LOGIN_PAGE.CREDENTIALS.INVALID_PASSWORD
                 )
@@ -97,7 +103,7 @@ describe('login page', { tags: ['@login', '@smoke'] }, () => {
             })
 
             it('locked out username', () => {
-                cy.submitLoginForm(
+                submitLoginForm(
                     LOGIN_PAGE.CREDENTIALS.LOCKED_OUT_USERNAME,
                     LOGIN_PAGE.CREDENTIALS.VALID_PASSWORD
                 )

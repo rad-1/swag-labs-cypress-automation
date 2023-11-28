@@ -46,29 +46,6 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
     })
 
     context('user can sort products', { tags: '@inventorySorting' }, () => {
-        const getProductNames = () => {
-            const productNamesArr = []
-
-            cy.get('div.inventory_item_name').each(($productNameEl) => {
-                const productNameText = $productNameEl.text()
-                productNamesArr.push(productNameText)
-            })
-
-            return cy.wrap(productNamesArr)
-        }
-
-        const getProductPrices = () => {
-            const productPricesArr = []
-
-            cy.get('div.inventory_item_price').each(($productPriceEl) => {
-                const productPriceText = $productPriceEl.text()
-                const productPriceValue = parseFloat(productPriceText.replace('$', ''))
-                productPricesArr.push(productPriceValue)
-            })
-
-            return cy.wrap(productPricesArr)
-        }
-
         it('ascending by name', () => {
             getProductNames().then(($productNames) => {
                 const expectedSort = $productNames.sort()
@@ -245,3 +222,26 @@ describe('inventory page', { tags: ['@inventory', '@smoke'] }, () => {
         })
     })
 })
+
+const getProductNames = () => {
+    const productNamesArr = []
+
+    cy.get('div.inventory_item_name').each(($productNameEl) => {
+        const productNameText = $productNameEl.text()
+        productNamesArr.push(productNameText)
+    })
+
+    return cy.wrap(productNamesArr)
+}
+
+const getProductPrices = () => {
+    const productPricesArr = []
+
+    cy.get('div.inventory_item_price').each(($productPriceEl) => {
+        const productPriceText = $productPriceEl.text()
+        const productPriceValue = parseFloat(productPriceText.replace('$', ''))
+        productPricesArr.push(productPriceValue)
+    })
+
+    return cy.wrap(productPricesArr)
+}

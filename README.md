@@ -69,7 +69,7 @@ For example, `@smoke`, `@inventory`, and `@navigation` are test tags that can be
     ~~~ sh
     $ npm run cy:tagged --tags='@smoke' # Run test file or specific tests that contain the @smoke tag
     # OR
-    $ npm run cy:tagged --tags='@inventory @navigation' # Run test file or specific tests that contain either of the  @inventory or @navigation tags
+    $ npm run cy:tagged --tags='@inventory @navigation' # Run test file or specific tests that contain either of the @inventory or @navigation tags
     ~~~
 
 3. To lint your code

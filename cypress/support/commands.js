@@ -3,11 +3,11 @@
 import { LOGIN_PAGE, INVENTORY_PAGE } from './constants'
 
 Cypress.Commands.add('getBySel', (selector) => {
-    return cy.get(`[data-test=${selector}]`)
+    cy.get(`[data-test=${selector}]`)
 })
 
 Cypress.Commands.add('getBySelLike', (selector) => {
-    return cy.get(`[data-test*=${selector}]`)
+    cy.get(`[data-test*=${selector}]`)
 })
 
 Cypress.Commands.add('submitLoginForm', (username, password) => {

@@ -1,6 +1,6 @@
 // cypress/support/commands.js
 
-import { LOGIN_PAGE, INVENTORY_PAGE } from './constants'
+import { INVENTORY_PAGE } from './constants'
 
 Cypress.Commands.add('getBySel', (selector) => {
     cy.get(`[data-test=${selector}]`)

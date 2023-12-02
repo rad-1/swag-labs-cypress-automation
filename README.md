@@ -29,8 +29,6 @@ Note that the project was built using:
 This project currently tests the following areas of the website:
 * Login: Page load and validation for different username-password combinations
 * Inventory: Product and price validation, and product sorting by name and price
-* Cart: (coming soon...)
-* Checkout: (coming soon...)
 * Navigation: Verify hamburger menu links
 
 ## Getting Started
